@@ -26,23 +26,25 @@ Things you may want to cover:
 # table schema
 
 * users
-  create_table "users", force: :cascade do |t|
-    t.string "role", null: false
-    t.string "username", null: false
-    t.string "email", null: false
-    t.string "password_digest", null: false
-  end
+
+|  欄位名稱   | 資料型態  |
+|  ----  | ----  |
+| role | string |
+| username  | string |
+| email  | string |
+| password| string |
 
 * tasks
-  create_table "tasks", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "description"
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
-    t.datetime "created_time", null: false, default: -> { 'CURRENT_TIMESTAMP' }
-  end
+
+|  欄位名稱   | 資料型態  |
+|  ----  | ----  |
+| title | string |
+| content  | string |
+| end_time| datetime |
+| start_time  | datetime |
 
 * tags
-    create_table "tags", force: :cascade do |t|
-    t.string "tag_name", null: false
-  end
+
+|  欄位名稱   | 資料型態  |
+|  ----  | ----  |
+| tag_name | string |
