@@ -1,0 +1,20 @@
+<h1>Task List</h1>
+
+<%= link_to "Add Task", new_task_path %>
+
+<table>
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Content</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |tasks| %>
+    <tr>
+      <td><%= tasks.title %></td>
+      <td><%= tasks.content %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
