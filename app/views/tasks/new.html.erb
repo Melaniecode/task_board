@@ -1,0 +1,21 @@
+<h1>Add Task</h1>
+
+<%= form_with model: @task, url: tasks_path do |f| %>
+  <% if f.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% f.object.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %> <br />
+
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content %> <br />
+
+  <%= f.submit "Create Task" %>
+<% end %>
+
+<br />
+<%= link_to 'Go Back to Task List', tasks_path %>
