@@ -39,7 +39,7 @@ Things you may want to cover:
 |  欄位名稱   | 資料型態  |
 |  ----  | ----  |
 | title | string |
-| content  | string |
+| content  | text |
 | end_time| datetime |
 | start_time  | datetime |
 
