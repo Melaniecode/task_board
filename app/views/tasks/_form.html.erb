@@ -1,0 +1,17 @@
+<%= form_for(task) do |f| %>
+
+  <% if task.errors.any? %>
+    <div class="alert alert-danger">
+      <% task.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %> <br />
+
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content %> <br />
+
+  <%= f.submit %>
+<% end %>

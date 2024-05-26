@@ -10,10 +10,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.each do |tasks| %>
+    <% @tasks.each do |task| %>
     <tr>
-      <td><%= tasks.title %></td>
-      <td><%= tasks.content %></td>
+      <td><%= task.title %></td>
+      <td><%= task.content %></td>
+      <td>
+        <%= link_to "編輯", edit_task_path(task) %>
+        <%= link_to "刪除", task_path(task), method: "delete", data: { confirm: "確認刪除" } %>
+      </td>
     </tr>
     <% end %>
   </tbody>
