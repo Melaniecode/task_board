@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: "Successfully added task!"
+      redirect_to tasks_path, notice: "Successfully Added Task!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,6 +28,16 @@ class TasksController < ApplicationController
       redirect_to tasks_path, notice: "Updated Successfully!"
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    if @task
+      @task.destroy
+      redirect_to tasks_path, notice: "Deleted Successfully!"
+    else
+      render :index, status: :unprocessable_entity
     end
   end
 
