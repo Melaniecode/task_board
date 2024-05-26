@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :set_task, :only => [ :edit, :update, :destroy]
+
   def index
     @tasks = Task.order(:id)
   end
@@ -11,24 +13,26 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: "Successfully added task!"
+      redirect_to tasks_path, notice: "Successfully Added Task!"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity #422
     end
   end
 
   def edit
-    @task = Task.find_by(id: params[:id])
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
-
     if @task.update(task_params)
       redirect_to tasks_path, notice: "Updated Successfully!"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity #422
     end
+  end
+
+  def destroy
+    @task.destroy  if @task
+      redirect_to tasks_path, notice: "Deleted Successfully!"
   end
 
   private
@@ -36,4 +40,9 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :content)
   end
+
+  def set_task
+    @task = Task.find_by(id: params[:id])
+  end
+
 end
