@@ -1,9 +1,8 @@
 class TasksController < ApplicationController
-  before_action :set_task, :only => [ :edit, :update, :destroy]
+  helper_method :task
 
   def index
     @tasks = Task.order(:id)
-
   end
 
   def new
@@ -20,11 +19,10 @@ class TasksController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @task.update(task_params)
+    if task.update(task_params)
       redirect_to tasks_path, notice: "Updated Successfully!"
     else
       render :edit, status: :unprocessable_entity #422
@@ -32,8 +30,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy  if @task
-      redirect_to tasks_path, notice: "Deleted Successfully!"
+    task.destroy
+    redirect_to tasks_path, notice: "Deleted Successfully!"
   end
 
   private
@@ -42,7 +40,8 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :content)
   end
 
-  def set_task
-    @task = Task.find_by(id: params[:id])
+  def task
+    @task ||= Task.find_by(id: params[:id])
   end
+
 end
