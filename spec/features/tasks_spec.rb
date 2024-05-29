@@ -52,13 +52,14 @@ RSpec.describe 'Task Management', type: :feature do
 
   describe '.delete' do
     before do
+      task
       visit tasks_path
       task_element = find('tr', text: task.title)
       task_element.click_button('Delete')
     end
-
     context 'delete a task' do
       it { expect(page).to have_content('Deleted Successfully!') }
+      it { expect(page).not_to have_content(task.title) }
     end
   end
 end
