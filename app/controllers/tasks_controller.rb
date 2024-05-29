@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller responsible for managing tasks in the application.
 class TasksController < ApplicationController
   helper_method :task
 
