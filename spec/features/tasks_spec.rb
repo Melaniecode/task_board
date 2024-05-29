@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Task Management', type: :feature do
-  let(:task) { create(:task) }
+  let!(:task) { create(:task) }
 
   describe '.create' do
     before do
@@ -56,9 +56,9 @@ RSpec.describe 'Task Management', type: :feature do
       task_element = find('tr', text: task.title)
       task_element.click_button('Delete')
     end
-
     context 'delete a task' do
       it { expect(page).to have_content('Deleted Successfully!') }
+      it { expect(page).not_to have_content(task.title) }
     end
   end
 end
