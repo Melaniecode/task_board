@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: t('create_succeed')
     else
-      render :new, status: :unprocessable_entity # 422
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,7 @@ class TasksController < ApplicationController
     if task.update(task_params)
       redirect_to tasks_path, notice: t('edit_succeed')
     else
-      render :edit, status: :unprocessable_entity # 422
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -1,2 +1,30 @@
 tw:
+  
+  tasks_page: 任務列表
+  edit: 修改
+  delete: 刪除
+  back: 返回
+  create: 任務新增
+  edit_page: 任務修改
+  task_title: 標題
+  task_content: 內容
+
+  helpers:
+    submit:
+      create: 新增
+      update: 更新
+
+  create_succeed: 任務新增成功！
+  delete_succeed: 任務刪除成功！
+  edit_succeed: 任務更新成功！
+  
+  activerecord:
+    errors:
+      models:
+        task:
+          attributes:
+            title: 
+              blank: 標題不能為空
+            content:
+              blank: 內容不能為空
 
