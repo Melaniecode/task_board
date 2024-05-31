@@ -16,7 +16,7 @@ module TaskBoard
     # 這行是設定我們預設的語言，抓不到時區的話，預設都是使用 tw 的版本
     config.i18n.default_locale = :tw
     # 這個是設定，我的語言只接受這兩個參數
-    I18n.available_locales = [:tw, :en]
+    I18n.available_locales = %i[tw en]
     # 這就是設定預設的時區
     config.time_zone = 'Taipei'
     # 這行是 如果沒有明確指定時區，就會從你的電腦去抓你正在使用的本地時區。
