@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller responsible for managing tasks in the application.
 class TasksController < ApplicationController
   helper_method :task
 
@@ -9,21 +12,21 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def edit; end
+
   def create
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: 'Successfully Added Task!'
+      redirect_to tasks_path, notice: t('create_succeed')
     else
       render :new, status: :unprocessable_entity # 422
     end
   end
 
-  def edit; end
-
   def update
     if task.update(task_params)
-      redirect_to tasks_path, notice: 'Updated Successfully!'
+      redirect_to tasks_path, notice: t('edit_succeed')
     else
       render :edit, status: :unprocessable_entity # 422
     end
@@ -31,7 +34,7 @@ class TasksController < ApplicationController
 
   def destroy
     task.destroy
-    redirect_to tasks_path, notice: 'Deleted Successfully!'
+    redirect_to tasks_path, notice: t('delete_succeed')
   end
 
   private

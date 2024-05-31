@@ -1,0 +1,43 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+inherit_mode:
+  merge:
+    - Exclude
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2.0
+  DisplayCopNames: true
+  SuggestExtensions: false
+  Exclude:
+    - config/puma.rb
+    - db/migrate/*
+    - vendor/ruby/**/*
+    - node_modules/**/*
+    - .licenses/**/*
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - spec/**/*
+Rails:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+Rails/OutputSafety:
+  Exclude:
+    - app/components/**/*
+    - lookbook/**/*
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+    - db/migrate/*
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*

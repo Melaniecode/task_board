@@ -28,4 +28,7 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  create_succeed: Successfully Added Task!
+  delete_succeed: Deleted Successfully!
+  edit_succeed: Updated Successfully!
+
