@@ -1,6 +1,11 @@
 <h1><%= t('.tasks_page') %></h1>
-
 <%= link_to t('.create'), new_task_path %>
+
+<%= form_tag(tasks_path, method: "get", id: 'sort') do %>
+  <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by") %>
+  <%= submit_tag t('.confirm'), name: nil %>
+<% end %>
+
 <table>
   <thead>
     <tr>
