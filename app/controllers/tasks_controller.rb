@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = Task.order(:id)
+    @tasks = sorted_tasks
   end
 
   def new
@@ -45,5 +45,20 @@ class TasksController < ApplicationController
 
   def task
     @task ||= Task.find_by(id: params[:id])
+  end
+
+  def sorted_tasks
+    case params[:sort_by]
+    when 'id_asc'
+      Task.order(id: :asc)
+    when 'id_desc'
+      Task.order(id: :desc)
+    when 'created_at_asc'
+      Task.order(created_at: :asc)
+    when 'created_at_desc'
+      Task.order(created_at: :desc)
+    else
+      Task.all
+    end
   end
 end
