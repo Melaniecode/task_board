@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = sorted_tasks
+    @tasks = Task.sorted_tasks(params)
   end
 
   def new
@@ -45,18 +45,5 @@ class TasksController < ApplicationController
 
   def task
     @task ||= Task.find_by(id: params[:id])
-  end
-
-  def sorted_tasks
-    sort_by = params[:sort_by] || 'id_asc'
-    sort_column, sort_direction = sort_by.split
-    valid_columns = %w[id created_at]
-    valid_directions = %w[asc desc]
-
-    if valid_columns.include?(sort_column) && valid_directions.include?(sort_direction)
-      Task.order("#{sort_column} #{sort_direction}")
-    else
-      Task.order('id asc')
-    end
   end
 end
