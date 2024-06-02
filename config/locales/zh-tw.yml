@@ -34,10 +34,29 @@ tw:
               blank: 不能為空！
             content:
               blank: 不能為空！
-    attributes:
-      task:
-        title: 標題
-        content: 內容
+            status:
+              blank: 不能為空！
+            priority:
+              blank: 不能為空！
+            start_time:
+              blank: 不能為空！
+            end_time:
+              blank: 不能為空！
+    activerecord:
+      attributes:
+        task:
+          title: 標題
+          content: 內容
+          start_time: 開始時間
+          end_time: 結束時間
+          priority: 
+            low: 低
+            medium: 中
+            high: 高
+          status: 
+            pending: 未完成
+            in_progress: 進行中
+            done: 已完成
 
   order_options:
     created_at_desc: "依創建時間降冪排序"

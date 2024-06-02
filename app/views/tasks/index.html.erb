@@ -10,6 +10,10 @@
   <thead>
     <tr>
       <td><%= Task.human_attribute_name :title %></td>
+      <td><%= Task.human_attribute_name :status %></td>
+      <td><%= Task.human_attribute_name :priority %></td>
+      <td><%= Task.human_attribute_name :start_time %></td>
+      <td><%= Task.human_attribute_name :end_time %></td>
       <td><%= Task.human_attribute_name :content %></td>
     </tr>
   </thead>
@@ -17,10 +21,14 @@
     <% @tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
+      <td><%= task.status %></td>
+      <td><%= task.priority %></td>
+      <td><%= task.start_time %></td>
+      <td><%= task.end_time %></td>
       <td><%= task.content %></td>
       <td>
         <%= link_to t('.edit'), edit_task_path(task) %>
-        <%= button_to t('.delete'), task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= button_to t('.delete'), task_path(task), method: :delete %>
       </td>
     </tr>
     <% end %>
