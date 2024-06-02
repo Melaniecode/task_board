@@ -48,17 +48,15 @@ class TasksController < ApplicationController
   end
 
   def sorted_tasks
-    case params[:sort_by]
-    when 'id_asc'
-      Task.order(id: :asc)
-    when 'id_desc'
-      Task.order(id: :desc)
-    when 'created_at_asc'
-      Task.order(created_at: :asc)
-    when 'created_at_desc'
-      Task.order(created_at: :desc)
+    sort_by = params[:sort_by] || 'id_asc'
+    sort_column, sort_direction = sort_by.split
+    valid_columns = %w[id created_at]
+    valid_directions = %w[asc desc]
+
+    if valid_columns.include?(sort_column) && valid_directions.include?(sort_direction)
+      Task.order("#{sort_column} #{sort_direction}")
     else
-      Task.all
+      Task.order('id asc')
     end
   end
 end
