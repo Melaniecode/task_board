@@ -2,7 +2,7 @@
 
 # represents tasks in the application.
 class Task < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   has_many :task_tagships, dependent: :destroy
   has_many :tags, through: :task_tagship
 
