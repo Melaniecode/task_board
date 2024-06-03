@@ -1,8 +1,7 @@
-<h1>Add Task</h1>
+<h1><%= t('.create_page') %></h1>
 
 <%= render "form", task: @task %>
 
 </br>
 
-<%= link_to "Go Back", tasks_path %>
-
+<%= link_to t('.back'), tasks_path %>

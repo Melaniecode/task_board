@@ -1,13 +1,11 @@
-<h1>Task List</h1>
+<h1><%= t('.tasks_page') %></h1>
 
-<%= link_to "Add Task", new_task_path %>
-
+<%= link_to t('.create'), new_task_path %>
 <table>
   <thead>
     <tr>
-      <td>Title</td>
-      <td>Content</td>
-      <td>Actions</td>
+      <td><%= Task.human_attribute_name :title %></td>
+      <td><%= Task.human_attribute_name :content %></td>
     </tr>
   </thead>
   <tbody>
@@ -16,8 +14,8 @@
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td>
-        <%= link_to "Edit", edit_task_path(task) %>
-        <%= button_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= link_to t('.edit'), edit_task_path(task) %>
+        <%= button_to t('.delete'), task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
       </td>
     </tr>
     <% end %>

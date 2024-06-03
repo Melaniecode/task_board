@@ -9,16 +9,16 @@ RSpec.describe 'Task Management' do
   describe '.create' do
     before do
       visit new_task_path
-      fill_in 'Title', with: title
-      fill_in 'Content', with: content
-      click_on 'Create Task'
+      fill_in '標題', with: title
+      fill_in '內容', with: content
+      click_on I18n.t('helpers.submit.create')
     end
 
     context 'when view the tasks' do
       let(:title) { 'New Title' }
       let(:content) { 'New Content' }
 
-      it { expect(page).to have_content('Successfully Added Task!') }
+      it { expect(page).to have_content('任務新增成功！') }
       it { expect(page).to have_content('New Title') }
       it { expect(page).to have_current_path(tasks_path) }
     end
@@ -27,24 +27,24 @@ RSpec.describe 'Task Management' do
       let(:title) { '' }
       let(:content) { '' }
 
-      it { expect(page).to have_content('Title can\'t be blank') }
-      it { expect(page).to have_content('Content can\'t be blank') }
+      it { expect(page).to have_content('標題 不能為空') }
+      it { expect(page).to have_content('內容 不能為空') }
     end
   end
 
   describe '.update' do
     before do
       visit edit_task_path(task)
-      fill_in 'Title', with: title
-      fill_in 'Content', with: content
-      click_on 'Update Task'
+      fill_in '標題', with: title
+      fill_in '內容', with: content
+      click_on I18n.t('helpers.submit.update')
     end
 
     context 'when is valid' do
       let(:title) { 'Update Title' }
       let(:content) { 'Update Content' }
 
-      it { expect(page).to have_content('Updated Successfully!') }
+      it { expect(page).to have_content('任務更新成功！') }
       it { expect(page).to have_content("#{title} #{content}") }
     end
 
@@ -52,8 +52,8 @@ RSpec.describe 'Task Management' do
       let(:title) { '' }
       let(:content) { '' }
 
-      it { expect(page).to have_content('Title can\'t be blank') }
-      it { expect(page).to have_content('Content can\'t be blank') }
+      it { expect(page).to have_content('標題 不能為空') }
+      it { expect(page).to have_content('內容 不能為空') }
     end
   end
 
@@ -61,11 +61,11 @@ RSpec.describe 'Task Management' do
     before do
       visit tasks_path
       task_element = find('tr', text: task.title)
-      task_element.click_on('Delete')
+      task_element.click_on I18n.t('tasks.index.delete')
     end
 
     context 'when delete a task' do
-      it { expect(page).to have_content('Deleted Successfully!') }
+      it { expect(page).to have_content('任務刪除成功！') }
       it { expect(page).to have_no_content(task.title) }
     end
   end
