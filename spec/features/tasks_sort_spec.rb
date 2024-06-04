@@ -21,38 +21,31 @@ RSpec.describe 'Task Sort Management' do
     end
 
     context 'when order by id desc' do
-      before { order_by('id', 'desc') }
+      before { click_order_option('id', 'desc') }
 
       it { expect(find(first_tr)).to have_text('Task 2') }
       it { expect(find(second_tr)).to have_text('Task 1') }
     end
 
     context 'when order by id asc' do
-      before { order_by('id', 'asc') }
+      before { click_order_option('id', 'asc') }
 
       it { expect(find(first_tr)).to have_text('Task 1') }
       it { expect(find(second_tr)).to have_text('Task 2') }
     end
 
     context 'when order by created_at desc' do
-      before { order_by('created_at', 'desc') }
+      before { click_order_option('created_at', 'desc') }
 
       it { expect(find(first_tr)).to have_text('Task 2') }
       it { expect(find(second_tr)).to have_text('Task 1') }
     end
 
     context 'when order by created_at asc' do
-      before { order_by('created_at', 'asc') }
+      before { click_order_option('created_at', 'asc') }
 
       it { expect(find(first_tr)).to have_text('Task 1') }
       it { expect(find(second_tr)).to have_text('Task 2') }
-    end
-
-    def order_by(column, row)
-      within('#sort') do
-        select(I18n.t("order_options.#{column}_#{row}"), from: 'sort_by')
-      end
-      click_on I18n.t('tasks.index.confirm')
     end
   end
 end

@@ -48,6 +48,6 @@ class TasksController < ApplicationController
   end
 
   def sort_by
-    params[:sort_by].presence || 'id asc'
+    params[:sort_by] || 'id asc'
   end
 end
