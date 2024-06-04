@@ -50,8 +50,15 @@ tw:
         priority: 優先權
         start_time: 開始時間
         end_time: 結束時間
+        task_status:
+          not_started: "待處理"
+          in_progress: "處理中"
+          complete: "已完成"
+        task_priority:
+          high: "優先"
+          medium: "不急"
+          low: "還好"
         
-
   order_options:
     created_at_desc: 依創建時間降冪排序
     created_at_asc: 依創建時間升冪排序

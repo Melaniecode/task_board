@@ -9,4 +9,12 @@ module TasksHelper
       [I18n.t('order_options.created_at_asc'), 'created_at asc']
     ]
   end
+
+  def task_priority(task)
+    Task.human_attribute_name [:priority, task.priority].join('.')
+  end
+
+  def task_status(task)
+    Task.human_attribute_name [:status, task.status].join('.')
+  end
 end
