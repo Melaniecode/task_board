@@ -23,8 +23,8 @@
       <td><%= task.title %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
-      <td><%= task.start_time %></td>
-      <td><%= task.end_time %></td>
+      <td><%= task.start_time.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td><%= task.end_time.strftime("%Y/%m/%d %I:%M %p") %></td>
       <td><%= task.content %></td>
      
 
