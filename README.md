@@ -1,28 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
 # table schema
 
 * users
@@ -48,3 +25,12 @@ Things you may want to cover:
 |  欄位名稱   | 資料型態  |
 |  ----  | ----  |
 | tag_name | string |
+
+# fly.io環境部署
+
+* 安裝 flyctl 工具
+```brew install flyctl```
+*  登入 fly.io
+```flyctl auth login```
+* 在所需部署資料夾執行
+```flyctl launch```
