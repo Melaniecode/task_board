@@ -3,7 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  describe 'Association' do
+  describe 'Associations' do
     it { is_expected.to have_many(:tasks).dependent(:destroy) }
+  end
+
+  describe 'Validations' do
+    subject { create(:user) }
+
+    it { is_expected.to validate_uniqueness_of(:name) }
   end
 end

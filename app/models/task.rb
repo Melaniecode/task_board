@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-# represents tasks in the application.
+# Represents tasks in the application.
 class Task < ApplicationRecord
-<<<<<<< HEAD
-  # belongs_to :user
-  has_many :task_tagships, dependent: :destroy
-  has_many :tags, through: :task_tagships
+  belongs_to :user
+  has_many :tags_tasks, dependent: :destroy
+  has_many :tags, through: :tags_tasks
 
   validates :title, :content, :start_time, :end_time, presence: true, allow_blank: false
   validate :start_time_before_end_time
@@ -15,6 +14,6 @@ class Task < ApplicationRecord
   def start_time_before_end_time
     return unless start_time.present? && end_time.present? && start_time >= end_time
 
-    errors.add(:start_time, '要早於 結束時間')
+    errors.add(:start_time, '要早於結束時間')
   end
 end

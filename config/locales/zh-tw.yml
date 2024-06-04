@@ -45,7 +45,6 @@ tw:
       task:
         title: 標題
         content: 內容
-<<<<<<< HEAD
         status: 狀態
         priority: 優先權
         start_time: 開始時間

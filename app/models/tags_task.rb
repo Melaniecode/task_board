@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TaskTagship < ApplicationRecord
+class TagsTask < ApplicationRecord
   belongs_to :task
   belongs_to :tag
 end
