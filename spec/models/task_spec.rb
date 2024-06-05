@@ -13,5 +13,7 @@ RSpec.describe Task do
     it { is_expected.to validate_presence_of(:content) }
     it { is_expected.to validate_presence_of(:start_time) }
     it { is_expected.to validate_presence_of(:end_time) }
+    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to validate_presence_of(:priority) }
   end
 end

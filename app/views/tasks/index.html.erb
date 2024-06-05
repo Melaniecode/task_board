@@ -21,8 +21,8 @@
     <% @tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
-      <td><%= task.status %></td>
-      <td><%= task.priority %></td>
+      <td><%= I18n.t("activerecord.enums.task.statuses.#{task.status}") %></td>
+      <td><%= I18n.t("activerecord.enums.task.priorities.#{task.priority}") %></td>
       <td><%= task.start_time %></td>
       <td><%= task.end_time %></td>
       <td><%= task.content %></td>

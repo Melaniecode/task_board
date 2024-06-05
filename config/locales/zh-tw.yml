@@ -1,6 +1,6 @@
 tw:
+
   tasks:
-    back: 返回 
     index:
       tasks_page: 任務列表
       delete: 刪除
@@ -8,23 +8,43 @@ tw:
       create: 新增
       sort_by: 依_排序
       confirm: 確定
+      actions: 操作
     new:
-      back: 返回 
       create_page: 任務新增
+      back: 返回
     edit:
       edit_page: 任務修改
-      back: 返回 
-  
+      back: 返回
+
   helpers:
     submit:
       create: 新增
       update: 更新
-      
+
   create_succeed: 任務新增成功！
   delete_succeed: 任務刪除成功！
   edit_succeed: 任務更新成功！
 
   activerecord:
+    attributes:
+      task:
+        title: 標題
+        content: 內容
+        status: 狀態
+        priority: 優先權
+        start_time: 開始時間
+        end_time: 結束時間
+        user: 用戶
+    enums:
+      task:
+        statuses:
+          pending: 待處理
+          in_progress: 處理中
+          done: 已完成
+        priorities:
+          low: 低
+          medium: 中
+          high: 高
     errors:
       models:
         task:
@@ -41,26 +61,15 @@ tw:
               blank: 不能為空！
             end_time:
               blank: 不能為空！
-    attributes:
-      task:
-        title: 標題
-        content: 內容
-        status: 狀態
-        priority: 優先權
-        start_time: 開始時間
-        end_time: 結束時間
-        task_status:
-          not_started: "待處理"
-          in_progress: "處理中"
-          complete: "已完成"
-        task_priority:
-          high: "優先"
-          medium: "不急"
-          low: "還好"
+            user:
+              blank: 不能為空！
+
+  errors:
+    messages:
+      required: 不能為空！
 
   order_options:
     created_at_desc: 依創建時間降冪排序
     created_at_asc: 依創建時間升冪排序
     id_desc: 依ID降冪排序
     id_asc: 依ID升冪排序
-
