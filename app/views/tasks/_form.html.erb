@@ -22,10 +22,10 @@
   <%= f.datetime_field :end_time, id: "task_end" %> <br />
 
   <%= f.label :status %>
-  <%= f.select :status, Task.statuses.keys.map { |k| [I18n.t("activerecord.enums.task.statuses.#{k}"), k] }, id: "task_status" %> <br />
+  <%= f.select :status, enum_options_i18n(:statuses), id: "task_status" %> <br />
 
   <%= f.label :priority %>
-  <%= f.select :priority, Task.priorities.keys.map { |k| [I18n.t("activerecord.enums.task.priorities.#{k}"), k] }, id: "task_priority" %> <br />
+  <%= f.select :priority, enum_options_i18n(:priorities), id: "task_priority" %> <br />
 
   <%= f.submit %>
 <% end %>
