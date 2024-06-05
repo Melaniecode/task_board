@@ -34,7 +34,7 @@ tw:
         priority: 優先權
         start_time: 開始時間
         end_time: 結束時間
-        user: 用戶
+
     enums:
       task:
         statuses:
@@ -45,28 +45,10 @@ tw:
           low: 低
           medium: 中
           high: 高
-    errors:
-      models:
-        task:
-          attributes:
-            title:
-              blank: 不能為空！
-            content:
-              blank: 不能為空！
-            status:
-              blank: 不能為空！
-            priority:
-              blank: 不能為空！
-            start_time:
-              blank: 不能為空！
-            end_time:
-              blank: 不能為空！
-            user:
-              blank: 不能為空！
 
   errors:
     messages:
-      required: 不能為空！
+      blank: '不能為空'
 
   order_options:
     created_at_desc: 依創建時間降冪排序

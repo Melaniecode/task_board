@@ -5,7 +5,8 @@ class Task < ApplicationRecord
   has_many :tags_tasks, dependent: :destroy
   has_many :tags, through: :tags_tasks
 
-  validates :title, :content, :start_time, :end_time, :status, :priority, presence: true, allow_blank: false
+  validates :title, :content, :start_time, :end_time, presence: { message: :blank }
+  validates :status, :priority, presence: true
   validate :start_time_before_end_time
 
   enum status: { pending: 0, in_progress: 1, done: 2 }

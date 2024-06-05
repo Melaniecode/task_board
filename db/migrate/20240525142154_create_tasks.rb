@@ -5,9 +5,13 @@ class CreateTasks < ActiveRecord::Migration[7.1]
   def change
     create_table :tasks do |t|
       t.string :title, null: false
-      t.text :content
-      t.datetime :start_time
-      t.datetime :end_time
+      t.text :content, null: false
+      t.datetime :start_time, null: false
+      t.datetime :end_time, null: false
+      t.integer :status, default: 0
+      t.integer :priority, default: 0
+      t.integer :user_id
+      t.index :user_id, name: 'index_tasks_on_user_id'
       t.timestamps
     end
   end
