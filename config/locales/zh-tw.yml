@@ -48,7 +48,9 @@ tw:
 
   errors:
     messages:
-      blank: '不能為空'
+      blank: 不能為空
+      start_time_before_end_time: 要早於結束時間
+      record_invalid: 無效記錄
 
   order_options:
     created_at_desc: 依創建時間降冪排序

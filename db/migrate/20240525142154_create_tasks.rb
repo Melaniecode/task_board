@@ -8,8 +8,8 @@ class CreateTasks < ActiveRecord::Migration[7.1]
       t.text :content, null: false
       t.datetime :start_time, null: false
       t.datetime :end_time, null: false
-      t.integer :status, default: 0
-      t.integer :priority, default: 0
+      t.integer :status, default: 0, null: false
+      t.integer :priority, default: 0, null: false
       t.integer :user_id
       t.index :user_id, name: 'index_tasks_on_user_id'
       t.timestamps

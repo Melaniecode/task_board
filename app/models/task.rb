@@ -15,6 +15,6 @@ class Task < ApplicationRecord
   def start_time_before_end_time
     return unless start_time.present? && end_time.present? && start_time >= end_time
 
-    errors.add(:start_time, '要早於結束時間')
+    errors.add(:start_time, :start_time_before_end_time)
   end
 end

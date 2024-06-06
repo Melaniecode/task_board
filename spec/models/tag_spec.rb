@@ -9,8 +9,9 @@ RSpec.describe Tag do
   end
 
   describe 'Validations' do
-    subject { create(:tag) }
+    subject { build(:tag) }
 
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
   end
 end
