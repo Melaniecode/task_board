@@ -9,14 +9,20 @@ RSpec.describe 'Task Management' do
   describe '.create' do
     before do
       visit new_task_path
-      fill_in '標題', with: title
-      fill_in '內容', with: content
+      fill_in 'task_title', with: title
+      fill_in 'task_content', with: content
+      select '待處理', from: 'task_status'
+      select '高', from: 'task_priority'
+      fill_in 'task_start', with: start_time
+      fill_in 'task_end', with: end_time
       click_on I18n.t('helpers.submit.create')
     end
 
     context 'when view the tasks' do
       let(:title) { 'New Title' }
       let(:content) { 'New Content' }
+      let(:start_time) { '2024-06-07 10:00' }
+      let(:end_time) { '2024-06-07 12:00' }
 
       it { expect(page).to have_content('任務新增成功！') }
       it { expect(page).to have_content('New Title') }
@@ -26,34 +32,48 @@ RSpec.describe 'Task Management' do
     context 'when not valid' do
       let(:title) { '' }
       let(:content) { '' }
+      let(:start_time) { '' }
+      let(:end_time) { '' }
 
       it { expect(page).to have_content('標題 不能為空') }
       it { expect(page).to have_content('內容 不能為空') }
+      it { expect(page).to have_content('開始時間 不能為空') }
+      it { expect(page).to have_content('結束時間 不能為空') }
     end
   end
 
   describe '.update' do
     before do
       visit edit_task_path(task)
-      fill_in '標題', with: title
-      fill_in '內容', with: content
+      fill_in 'task_title', with: title
+      fill_in 'task_content', with: content
+      select '已完成', from: 'task_status'
+      select '低', from: 'task_priority'
+      fill_in 'task_start', with: start_time
+      fill_in 'task_end', with: end_time
       click_on I18n.t('helpers.submit.update')
     end
 
     context 'when is valid' do
       let(:title) { 'Update Title' }
       let(:content) { 'Update Content' }
+      let(:start_time) { '2024-06-07 10:00' }
+      let(:end_time) { '2024-06-07 12:00' }
 
       it { expect(page).to have_content('任務更新成功！') }
-      it { expect(page).to have_content("#{title} #{content}") }
+      it { expect(page).to have_content('Update Title') }
     end
 
     context 'when not valid' do
       let(:title) { '' }
       let(:content) { '' }
+      let(:start_time) { '' }
+      let(:end_time) { '' }
 
       it { expect(page).to have_content('標題 不能為空') }
       it { expect(page).to have_content('內容 不能為空') }
+      it { expect(page).to have_content('開始時間 不能為空') }
+      it { expect(page).to have_content('結束時間 不能為空') }
     end
   end
 
