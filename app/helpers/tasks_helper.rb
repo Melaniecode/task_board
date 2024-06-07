@@ -6,7 +6,9 @@ module TasksHelper
       [I18n.t('order_options.id_desc'), 'id desc'],
       [I18n.t('order_options.id_asc'), 'id asc'],
       [I18n.t('order_options.created_at_desc'), 'created_at desc'],
-      [I18n.t('order_options.created_at_asc'), 'created_at asc']
+      [I18n.t('order_options.created_at_asc'), 'created_at asc'],
+      [I18n.t('order_options.end_time_desc'), 'end_time desc'],
+      [I18n.t('order_options.end_time_asc'), 'end_time asc']
     ]
   end
 
