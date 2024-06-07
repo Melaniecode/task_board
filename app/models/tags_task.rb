@@ -1,0 +1,2 @@
+class TagsTask < ApplicationRecord
+end
