@@ -5,9 +5,7 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = Task.where(nil)
-    @tasks = @tasks.title_search(params[:title]) if params[:title].present?
-    # @tasks = @tasks.status_search(params[:status]) if params[:status].present?
+    @tasks = Task.filter(params)
     @tasks = @tasks.order(sort_by)
   end
 
@@ -25,6 +23,11 @@ class TasksController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def create_sample_tasks
+    Task.create_sample_tasks
+    redirect_to tasks_path, notice: t('create_succeed')
   end
 
   def update

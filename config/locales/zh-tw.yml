@@ -6,8 +6,8 @@ tw:
       edit: 修改
       create: 新增
       sort_by: 依_排序
-      search_status: 狀態搜尋
-      search_title: 標題查找
+      search_status: 狀態
+      search_title: 標題搜尋
       confirm: 確定
       actions: 操作
     new:
