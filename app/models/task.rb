@@ -19,13 +19,11 @@ class Task < ApplicationRecord
   end
   scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
   scope :status_search, ->(status) { where(status:) if status.present? }
-  scope :priority_search, ->(priority) { where(priority:) if priority.present? }
 
   def self.filter(params)
     tasks = all
     tasks = tasks.title_search(params[:title])
-    tasks = tasks.status_search(params[:status])
-    tasks.priority_search(params[:priority])
+    tasks.status_search(params[:status])
   end
 
   def self.create_sample_tasks
