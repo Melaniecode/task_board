@@ -57,3 +57,5 @@ tw:
     created_at_asc: 依創建時間升冪排序
     id_desc: 依ID降冪排序
     id_asc: 依ID升冪排序
+    end_time_desc: 依結束時間從遠到進排序
+    end_time_asc: 依結束時間從近到遠排序
