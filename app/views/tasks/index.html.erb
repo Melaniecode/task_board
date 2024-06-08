@@ -2,6 +2,7 @@
 <%= link_to t('.create'), new_task_path %>
 
 <%= form_tag(tasks_path, method: "get", id: 'sort') do %>
+  <%= text_field_tag :title, params[:title], placeholder: t(".search_title") ,id:"title"%>
   <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by") %>
   <%= submit_tag t('.confirm'), name: nil %>
 <% end %>

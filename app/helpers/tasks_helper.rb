@@ -12,6 +12,11 @@ module TasksHelper
     ]
   end
 
+  # def status_value_options
+  #   [
+  #   ]
+  # end
+
   def status_i18n(status)
     I18n.t("activerecord.enums.task.statuses.#{status}")
   end

@@ -5,7 +5,10 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = Task.order(sort_by)
+    @tasks = Task.where(nil)
+    @tasks = @tasks.title_search(params[:title]) if params[:title].present?
+    # @tasks = @tasks.status_search(params[:status]) if params[:status].present?
+    @tasks = @tasks.order(sort_by)
   end
 
   def new
