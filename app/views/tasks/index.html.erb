@@ -32,15 +32,12 @@
       <td><%= task.start_time %></td>
       <td><%= task.end_time %></td>
       <td><%= task.content %></td>
-     
-
       <td>
         <%= link_to t('.edit'), edit_task_path(task) %>
         <%= button_to t('.delete'), task_path(task), method: :delete %>
       </td>
-      
-
     </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>

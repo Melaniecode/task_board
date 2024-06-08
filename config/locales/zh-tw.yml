@@ -62,3 +62,10 @@ tw:
     end_time_asc: 依結束時間從近到遠排序
     priority_desc: 依優先度從高到低排序
     priority_asc: 依優先度從低到高排序
+  
+  views:
+    pagination:
+      first: 第一頁
+      next: 下一頁
+      last: 末頁
+      previous: 上一頁
