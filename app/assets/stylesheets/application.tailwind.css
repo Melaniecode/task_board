@@ -2,12 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
 }
 
-*/
+.pagination .page,
+.pagination .first,
+.pagination .last,
+.pagination .prev,
+.pagination .next {
+  padding: 5px 10px;
+  margin: 0 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #333; /* Text color for page numbers */
+  background-color: #fff; /* Background color for page numbers */
+}
+
+.pagination .page:hover,
+.pagination .first:hover,
+.pagination .last:hover,
+.pagination .prev:hover,
+.pagination .next:hover {
+  background-color: #f2f2f2; /* Light gray background on hover */
+}
+
+.pagination .current {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #0056b3;
+}
+
