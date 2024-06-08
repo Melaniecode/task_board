@@ -80,3 +80,5 @@ group :test do
 end
 
 gem 'dockerfile-rails', '>= 1.6', group: :development
+
+gem "tailwindcss-rails", "~> 2.6"
