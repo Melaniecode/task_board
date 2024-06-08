@@ -1,31 +1,29 @@
-<%= form_with model: task, local: true do |f| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% task.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+<%= form_with model: task, local: true, class: "space-y-6" do |f| %>
+  <%= form_field_with_errors(f, :title) do %>
+    <%= f.text_field :title, id: "task_title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   <% end %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title, id: "task_title" %> <br />
+  <%= form_field_with_errors(f, :content) do %>
+    <%= f.text_area :content, id: "task_content", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <% end %>
 
-  <%= f.label :content %>
-  <%= f.text_area :content, id: "task_content" %> <br />
+  <%= form_field_with_errors(f, :start_time) do %>
+    <%= f.datetime_field :start_time, id: "task_start", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <% end %>
 
-  <%= f.label :start_time %>
-  <%= f.datetime_field :start_time, id: "task_start" %> <br />
+  <%= form_field_with_errors(f, :end_time) do %>
+    <%= f.datetime_field :end_time, id: "task_end", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <% end %>
 
-  <%= f.label :end_time %>
-  <%= f.datetime_field :end_time, id: "task_end" %> <br />
+  <%= form_field_with_errors(f, :status) do %>
+    <%= f.select :status, enum_options_i18n(:statuses), id: "task_status", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <% end %>
 
-  <%= f.label :status %>
-  <%= f.select :status, enum_options_i18n(:statuses), id: "task_status" %> <br />
+  <%= form_field_with_errors(f, :priority) do %>
+    <%= f.select :priority, enum_options_i18n(:priorities), id: "task_priority", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <% end %>
 
-  <%= f.label :priority %>
-  <%= f.select :priority, enum_options_i18n(:priorities), id: "task_priority" %> <br />
-
-  <%= f.submit %>
+  <div>
+    <%= f.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
 <% end %>
