@@ -2,7 +2,7 @@
 
 module TasksHelper
   def click_order_option(column, row)
-    within('#sort') do
+    within('.sort-form') do
       select(I18n.t("order_options.#{column}_#{row}"), from: 'sort_by')
     end
     click_on I18n.t('tasks.index.confirm')
