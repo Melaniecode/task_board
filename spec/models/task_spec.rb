@@ -6,6 +6,7 @@ RSpec.describe Task do
   describe 'Associations' do
     it { is_expected.to have_many(:tags_tasks).dependent(:destroy) }
     it { is_expected.to have_many(:tags).through(:tags_tasks) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe 'Validations' do

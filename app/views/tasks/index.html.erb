@@ -1,22 +1,19 @@
-<div class="page-container">
+<div class="page-container w-full mx-auto px-4">
   <h1 class="tasks-page-title"><%= t('.tasks_page') %></h1>
   <div class="flex justify-between items-center mb-4">
     <%= link_to t('.create'), new_task_path, class: "task-create-link" %>
-    <%= form_with(url: create_sample_tasks_path, method: :post, class: "inline-block") do |form| %>
-      <%= form.submit '隨意新增10筆資料', class: "create-sample-tasks" %>
-    <% end %>
   </div>
 
-  <%= form_tag(tasks_path, method: "get", class: 'sort-form') do %>
-    <div class="flex space-x-4">
-      <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), class: "task-title" %>
-      <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "task-status" %>
-      <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "task-sort-by" %>
-      <%= submit_tag t('.confirm'), name: nil, class: "sort-form-submit" %>
+  <%= form_tag(tasks_path, method: "get", class: 'sort-form w-full') do %>
+    <div class="flex space-x-4 w-full">
+      <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), class: "task-title w-full" %>
+      <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "task-status w-full" %>
+      <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "task-sort-by w-full" %>
+      <%= submit_tag t('.confirm'), name: nil, class: "sort-form-submit w-full" %>
     </div>
   <% end %>
 
-  <table class="task-table">
+  <table class="task-table w-full">
     <thead class="task-table-header">
       <tr>
         <th class="task-table-cell"><%= Task.human_attribute_name :title %></th>
@@ -51,6 +48,3 @@
     <%= paginate @tasks %>
   </div>
 </div>
-
-
-  
