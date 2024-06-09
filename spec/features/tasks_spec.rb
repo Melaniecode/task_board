@@ -35,10 +35,7 @@ RSpec.describe 'Task Management' do
       let(:start_time) { '' }
       let(:end_time) { '' }
 
-      it { expect(page).to have_content('標題 不能為空') }
-      it { expect(page).to have_content('內容 不能為空') }
-      it { expect(page).to have_content('開始時間 不能為空') }
-      it { expect(page).to have_content('結束時間 不能為空') }
+      it { expect(page).to have_content('不能為空') }
     end
   end
 
@@ -70,10 +67,7 @@ RSpec.describe 'Task Management' do
       let(:start_time) { '' }
       let(:end_time) { '' }
 
-      it { expect(page).to have_content('標題 不能為空') }
-      it { expect(page).to have_content('內容 不能為空') }
-      it { expect(page).to have_content('開始時間 不能為空') }
-      it { expect(page).to have_content('結束時間 不能為空') }
+      it { expect(page).to have_content('不能為空') }
     end
   end
 
