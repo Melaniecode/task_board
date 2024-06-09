@@ -1,29 +1,29 @@
 <%= form_with model: task, local: true, class: "space-y-6" do |f| %>
   <%= form_field_with_errors(f, :title) do %>
-    <%= f.text_field :title, id: "task_title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.text_field :title, id: "task_title" %>
   <% end %>
 
   <%= form_field_with_errors(f, :content) do %>
-    <%= f.text_area :content, id: "task_content", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.text_area :content, id: "task_content" %>
   <% end %>
 
   <%= form_field_with_errors(f, :start_time) do %>
-    <%= f.datetime_field :start_time, id: "task_start", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.datetime_field :start_time, id: "task_start" %>
   <% end %>
 
   <%= form_field_with_errors(f, :end_time) do %>
-    <%= f.datetime_field :end_time, id: "task_end", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.datetime_field :end_time, id: "task_end" %>
   <% end %>
 
   <%= form_field_with_errors(f, :status) do %>
-    <%= f.select :status, enum_options_i18n(:statuses), id: "task_status", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.select :status, enum_options_i18n(:statuses), id: "task_status" %>
   <% end %>
 
   <%= form_field_with_errors(f, :priority) do %>
-    <%= f.select :priority, enum_options_i18n(:priorities), id: "task_priority", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.select :priority, enum_options_i18n(:priorities), id: "task_priority" %>
   <% end %>
 
   <div>
-    <%= f.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= f.submit class: "submit-button" %>
   </div>
 <% end %>
