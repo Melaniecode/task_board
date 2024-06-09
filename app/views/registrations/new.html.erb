@@ -1,0 +1,41 @@
+<h1><%= t('sessions.new.sign_up') %></h1>
+
+<%= form_with model: @user, url: sign_up_path do |form| %>
+
+  <% if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :authority %>
+    <%= form.select :authority, options_for_select([["Admin", "admin"], ["Normal", "normal"]]), {}, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Melanie" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control", placeholder: "chiu_jm@gmail.com" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit t('sessions.new.sign_up'), class: "btn btn-primary" %>
+  </div>
+<% end %>

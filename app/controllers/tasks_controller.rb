@@ -3,8 +3,10 @@
 # Controller responsible for managing tasks in the application.
 class TasksController < ApplicationController
   helper_method :task
+  before_action :require_user_logged_in!
 
   def index
+    @user = User.find_by(id: session[:user_id]) if session[:user_id]
     @tasks = Task.filter(params).order(sort_by).page(params[:page]).per(10)
   end
 
@@ -16,7 +18,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = Current.user.id
     if @task.save
       redirect_to tasks_path, notice: t('create_succeed')
     else

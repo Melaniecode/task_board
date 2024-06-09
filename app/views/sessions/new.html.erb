@@ -1,0 +1,17 @@
+<h1><%= t('registrations.new.log_in') %></h1>
+
+<%= form_with url: log_in_path do |form| %>
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control", placeholder: "chiu_jm@gmail.com" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit t('registrations.new.log_in'), class: "btn btn-primary" %>
+  </div>
+<% end %>

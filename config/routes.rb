@@ -1,8 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/about', to: 'about#index'
+
+  get '/sign_up', to: 'registrations#new'
+  post '/sign_up', to: 'registrations#create'
+
+  get '/log_in', to: 'sessions#new'
+  post '/log_in', to: 'sessions#create'
+
+  delete '/log_out', to: 'sessions#destroy'
+
   resources :tasks
-  post '/create_sample_tasks', to: 'tasks#create_sample_tasks'
+
   # Defines the root path route ("/")
   root 'tasks#index'
 end
