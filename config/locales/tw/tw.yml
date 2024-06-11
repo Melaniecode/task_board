@@ -17,14 +17,16 @@ tw:
     edit:
       edit_page: 任務修改
       back: 返回
-  sessions:
+  registrations:
     new:
       sign_up: 註冊
-  registrations:
+  sessions:
     new:
       log_in: 登入
       log_out: 登出
       tasks_page: 任務列表
+      email: 電子郵件
+      password: 密碼
 
   helpers:
     submit:
@@ -50,7 +52,7 @@ tw:
       user:
         name: 姓名
         email: 信箱
-        authority: 權限
+        authority: 使用者
         password: 密碼
         password_confirmation: 確認密碼
 

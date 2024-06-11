@@ -1,17 +1,20 @@
-<h1><%= t('registrations.new.log_in') %></h1>
+<div class="flex justify-center items-center h-screen">
+  <div class="max-w-md w-full bg-white border border-gray-300 rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-semibold mb-4"><%= t('sessions.new.log_in') %></h2>
+    <%= form_with url: log_in_path do |form| %>
+      <div class="mb-5">
+        <%= form.label t('sessions.new.email'), class: "block mb-2 text-sm font-medium text-gray-900" %>
+        <%= form.text_field :email, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "chiu_jm@gmail.com" %>
+      </div>
 
-<%= form_with url: log_in_path do |form| %>
-  <div class="mb-3">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "form-control", placeholder: "chiu_jm@gmail.com" %>
-  </div>
+      <div class="mb-5">
+        <%= form.label t('sessions.new.password'), class: "block mb-2 text-sm font-medium text-gray-900" %>
+        <%= form.password_field :password, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+      </div>
 
-  <div class="mb-3">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: "form-control" %>
+      <div class="mb-5">
+        <%= form.submit t('sessions.new.log_in'), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="mb-3">
-    <%= form.submit t('registrations.new.log_in'), class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>

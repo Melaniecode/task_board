@@ -205,7 +205,6 @@
 .task-action-buttons a {
   background-color: #4299e1;
   color: #ffffff;
-  text-decoration: none;
 }
 
 .task-action-buttons button {
@@ -213,6 +212,7 @@
   color: #ffffff;
   border: none;
 }
+
 .flex {
   display: flex;
 }
@@ -228,4 +228,3 @@
 .h-full {
   height: 100vh;
 }
-
