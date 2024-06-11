@@ -1,27 +1,20 @@
-<nav class="bg-gray-100 shadow">
+<nav class="bg-blue-500 shadow">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <div class="flex-shrink-0 flex items-center">
-        <%= link_to "Melanie的Task Board", root_path, class: "text-xl font-bold text-gray-800" %>
-      </div>
-      <div class="hidden sm:flex sm:items-center sm:space-x-4">
-        <%= link_to t('registrations.new.tasks_page'), root_path, class: "text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" %>
+        <%= link_to "Melanie 的 Task Board", root_path, class: "text-lg font-bold text-gray-200" %>
       </div>
       <div class="hidden sm:flex sm:items-center sm:space-x-4">
         <% if Current.user %>
-          <%= button_to t('registrations.new.log_out'), log_out_path, method: :delete, class: "text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" %>
+          <span class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+            <%= "歡迎登入  #{Current.user.name}" %>
+          </span>
+          <%= button_to t('sessions.new.log_out'), log_out_path, method: :delete, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>
         <% else %>
-          <%= link_to t('registrations.new.log_in'), log_in_path, class: "text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to t('sessions.new.sign_up'), sign_up_path, class: "text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to t('sessions.new.log_in'), log_in_path, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>
+          <%= link_to t('registrations.new.sign_up'), sign_up_path, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>
         <% end %>
-      </div>
-      <div class="-mr-2 flex items-center sm:hidden">
-        <button type="button" class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 focus:text-gray-500" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
       </div>
     </div>
   </div>
+</nav>
