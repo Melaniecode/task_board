@@ -20,7 +20,7 @@ class Task < ApplicationRecord
   scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
   scope :status_search, ->(status) { where(status:) if status.present? }
 
-  def self.filter(params)
-    title_search(params[:title]).status_search(params[:status])
+  def self.filter(params, current_user)
+    current_user.tasks.title_search(params[:title]).status_search(params[:status])
   end
 end
