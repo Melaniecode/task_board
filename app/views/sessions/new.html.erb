@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="flex justify-center items-center h-screen">
   <div id="login_form_container" class="max-w-md w-full bg-white border border-gray-300 rounded-lg shadow-md p-6">
     <h2 class="text-xl font-semibold mb-4"><%= t('sessions.new.log_in') %></h2>
@@ -19,22 +18,3 @@
     <% end %>
   </div>
 </div>
-=======
-<h1><%= t('registrations.new.log_in') %></h1>
-
-<%= form_with url: log_in_path do |form| %>
-  <div class="mb-3">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "form-control", placeholder: "chiu_jm@gmail.com" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.submit t('registrations.new.log_in'), class: "btn btn-primary" %>
-  </div>
-<% end %>
->>>>>>> e762710 (add user index)
