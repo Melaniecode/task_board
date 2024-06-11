@@ -4,18 +4,23 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe 'Task Management' do
-  let!(:task) { create(:task) }
+  let!(:user) { create(:user) }
+  let!(:task) { create(:task, user:) }
+
+  before { user_login(user) }
 
   describe '.create' do
     before do
       visit new_task_path
-      fill_in 'task_title', with: title
-      fill_in 'task_content', with: content
-      select '待處理', from: 'task_status'
-      select '高', from: 'task_priority'
-      fill_in 'task_start', with: start_time
-      fill_in 'task_end', with: end_time
-      click_on I18n.t('helpers.submit.create')
+      within('form', wait: 10) do
+        fill_in 'task_title', with: title
+        fill_in 'task_content', with: content
+        select '待處理', from: 'task_status'
+        select '高', from: 'task_priority'
+        fill_in 'task_start_time', with: start_time
+        fill_in 'task_end_time', with: end_time
+        click_on I18n.t('helpers.submit.create')
+      end
     end
 
     context 'when view the tasks' do
@@ -46,8 +51,8 @@ RSpec.describe 'Task Management' do
       fill_in 'task_content', with: content
       select '已完成', from: 'task_status'
       select '低', from: 'task_priority'
-      fill_in 'task_start', with: start_time
-      fill_in 'task_end', with: end_time
+      fill_in 'task_start_time', with: start_time
+      fill_in 'task_end_time', with: end_time
       click_on I18n.t('helpers.submit.update')
     end
 
@@ -79,7 +84,7 @@ RSpec.describe 'Task Management' do
     end
 
     context 'when delete a task' do
-      it { expect(page).to have_content('任務刪除成功！') }
+      it { expect(page).to have_content('刪除成功！') }
       it { expect(page).to have_no_content(task.title) }
     end
   end

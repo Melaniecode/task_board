@@ -79,3 +79,14 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+private
+
+def user_login(user)
+  visit log_in_path
+  within('#login_form_container') do
+    fill_in 'email', with: user.email
+    fill_in 'password', with: user.password
+    click_on I18n.t('sessions.new.log_in')
+  end
+end
