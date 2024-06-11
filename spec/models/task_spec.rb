@@ -52,4 +52,16 @@ RSpec.describe Task do
       }
     end
   end
+
+  describe '.filter' do
+    context 'when filtering tasks by title and status for the current user' do
+      let(:user) { create(:user) }
+      let!(:pending_task) { create(:task, title: 'Task 1', user:, status: :pending) }
+      let!(:in_progress_task) { create(:task, title: 'Task 2', user:, status: :in_progress) }
+      let(:filtered_tasks) { described_class.filter({ title: 'Task 1', status: 'pending' }, user) }
+
+      it { expect(filtered_tasks).to include(pending_task) }
+      it { expect(filtered_tasks).not_to include(in_progress_task) }
+    end
+  end
 end

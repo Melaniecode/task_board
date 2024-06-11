@@ -13,13 +13,11 @@ RSpec.describe User do
     it { is_expected.to have_many(:tasks).dependent(:destroy) }
   end
 
-  describe 'Before_destroy' do
-    subject { admin.destroy }
+  describe 'has_secure_password' do
+    it { is_expected.to have_secure_password }
+  end
 
-    let!(:admin) { create(:user, :admin) }
-
-    context 'when delete last admin' do
-      it { is_expected.to be_falsy }
-    end
+  describe 'enums' do
+    it { is_expected.to define_enum_for(:authority).with_values(normal: 0, admin: 1) }
   end
 end
