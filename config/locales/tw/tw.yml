@@ -41,7 +41,6 @@ tw:
   not_log_in: 你必須先登入才可以查看！
   invalid_log_in: 你的信箱或密碼有誤，請重新輸入！
 
-
   activerecord:
     attributes:
       task:

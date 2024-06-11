@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to log_in_path, notice: t('log_out_succeed')
   end
-<<<<<<< HEAD
 
   private
 
@@ -26,6 +25,3 @@ class SessionsController < ApplicationController
     user = User.find_by(email:)
     user if user&.authenticate(password)
   end
-=======
->>>>>>> e762710 (add user index)
-end

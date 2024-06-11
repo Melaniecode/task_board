@@ -16,12 +16,7 @@ class TasksController < ApplicationController
   def edit; end
 
   def create
-<<<<<<< HEAD
     @task = current_user.tasks.new(task_params)
-=======
-    @task = Task.new(task_params)
-    @task.user_id = Current.user.id
->>>>>>> e762710 (add user index)
     if @task.save
       redirect_to tasks_path, notice: t('create_succeed')
     else
