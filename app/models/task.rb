@@ -17,13 +17,11 @@ class Task < ApplicationRecord
 
     errors.add(:start_time, :start_time_before_end_time)
   end
-  scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
-  scope :status_search, ->(status) { where(status:) if status.present? }
+  scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") }
+  scope :status_search, ->(status) { where(status:) }
 
   def self.filter(params)
-    tasks = all
-    tasks = tasks.title_search(params[:title])
-    tasks.status_search(params[:status])
+    title_search(params[:title]).status_search(params[:status])
   end
 
   def self.create_sample_tasks
