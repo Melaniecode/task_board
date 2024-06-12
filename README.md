@@ -44,3 +44,5 @@ Rails版本號： 7.1.3.3
 ```flyctl launch```
 *  Would you like to continue in the web UI?
 選擇y，即可進到fly.io進行設定
+*  第二次部署
+```fly deploy```
