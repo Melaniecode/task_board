@@ -11,7 +11,6 @@ RSpec.describe 'Task Management' do
   describe '.create' do
     before do
       visit new_task_path
-<<<<<<< HEAD
       fill_in 'task_title', with: 'New Title'
       fill_in 'task_content', with: 'New Content'
       select '待處理', from: 'task_status'
@@ -22,23 +21,6 @@ RSpec.describe 'Task Management' do
     end
 
     context 'when viewing the tasks' do
-=======
-      fill_in 'task_title', with: title
-      fill_in 'task_content', with: content
-      select '待處理', from: 'task_status'
-      select '高', from: 'task_priority'
-      fill_in 'task_start_time', with: start_time
-      fill_in 'task_end_time', with: end_time
-      click_on I18n.t('tasks.index.confirm')
-    end
-
-    context 'when view the tasks' do
-      let(:title) { 'New Title' }
-      let(:content) { 'New Content' }
-      let(:start_time) { '2024-06-07 10:00' }
-      let(:end_time) { '2024-06-07 12:00' }
-
->>>>>>> 90b9252 (tasks_spec checked)
       it { expect(page).to have_content('新增成功！') }
       it { expect(page).to have_content('New Title') }
       it { expect(page).to have_current_path(tasks_path) }
