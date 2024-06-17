@@ -1,5 +1,4 @@
 tw:
-
   tasks:
     index:
       tasks_page: 任務列表
@@ -7,6 +6,8 @@ tw:
       edit: 修改
       create: 新增
       sort_by: 依_排序
+      search_status: 狀態
+      search_title: 標題搜尋
       confirm: 確定
       actions: 操作
     new:
@@ -59,3 +60,5 @@ tw:
     id_asc: 依ID升冪排序
     end_time_desc: 依結束時間從遠到進排序
     end_time_asc: 依結束時間從近到遠排序
+    priority_desc: 依優先度從高到低排序
+    priority_asc: 依優先度從低到高排序
