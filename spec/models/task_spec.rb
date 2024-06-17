@@ -29,4 +29,18 @@ RSpec.describe Task do
     it { is_expected.to define_enum_for(:status).with_values(pending: 0, in_progress: 1, done: 2) }
     it { is_expected.to define_enum_for(:priority).with_values(low: 0, medium: 1, high: 2) }
   end
+
+  describe 'Search' do
+    let(:task1_done) { create(:task, title: 'Task 1', status: 'done') }
+    let(:task2_inprogress) { create(:task, title: 'Task 2', status: 'in_progress') }
+    let(:task1_inprogress) { create(:task, title: 'Task 1', status: 'in_progress') }
+
+    describe '.title_search' do
+      it { expect(described_class.title_search('Task 1')).to contain_exactly(task1_done, task1_inprogress) }
+    end
+
+    describe '.status_search' do
+      it { expect(described_class.status_search(:in_progress)).to contain_exactly(task1_inprogress, task2_inprogress) }
+    end
+  end
 end

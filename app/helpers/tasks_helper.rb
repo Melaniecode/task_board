@@ -8,8 +8,14 @@ module TasksHelper
       [I18n.t('order_options.created_at_desc'), 'created_at desc'],
       [I18n.t('order_options.created_at_asc'), 'created_at asc'],
       [I18n.t('order_options.end_time_desc'), 'end_time desc'],
-      [I18n.t('order_options.end_time_asc'), 'end_time asc']
+      [I18n.t('order_options.end_time_asc'), 'end_time asc'],
+      [I18n.t('order_options.priority_asc'), 'priority asc'],
+      [I18n.t('order_options.priority_desc'), 'priority desc']
     ]
+  end
+
+  def status_value_options
+    Task.statuses.keys.map { |k| [I18n.t("activerecord.enums.task.statuses.#{k}"), k] }
   end
 
   def status_i18n(status)

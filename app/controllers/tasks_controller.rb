@@ -5,7 +5,11 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = Task.order(sort_by)
+<<<<<<< HEAD
+    @tasks = Task.filter(params).order(sort_by)
+=======
+    @tasks = Task.filter(params).order(sort_by).page(params[:page]).per(10)
+>>>>>>> fc8fcd2 (finished add kaminari)
   end
 
   def new
@@ -22,6 +26,11 @@ class TasksController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def create_sample_tasks
+    Task.create_sample_tasks
+    redirect_to tasks_path, notice: t('create_succeed')
   end
 
   def update
