@@ -90,3 +90,15 @@ def user_login(user)
     click_on I18n.t('sessions.new.log_in')
   end
 end
+
+def sign_up_as_admin
+  visit sign_up_path
+
+  fill_in 'user_name', with: 'Melanie'
+  fill_in 'user_email', with: 'melanie@example.com'
+  fill_in 'user_password', with: 'password'
+  fill_in 'user_password_confirmation', with: 'password'
+  select 'Admin', from: 'user_authority'
+
+  click_on I18n.t('registrations.new.sign_up'), match: :first
+end
