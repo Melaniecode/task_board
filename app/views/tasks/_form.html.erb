@@ -16,14 +16,14 @@
     </div>
     <div class="mb-3">
       <%= f.label :start_time, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.datetime_field :start_time, id: "task_start", class: "form-input mt-1 block w-full rounded-md focus:ring-blue-500 focus:border-blue-500" %>
+      <%= f.datetime_field :start_time, id: "task_start_time", class: "form-input mt-1 block w-full rounded-md focus:ring-blue-500 focus:border-blue-500" %>
       <% if task.errors.has_key?(:start_time) %>
         <p class="text-sm text-red-600"><%= task.errors.full_messages_for(:start_time).first %></p>
       <% end %>
     </div>
     <div class="mb-3">
       <%= f.label :end_time, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.datetime_field :end_time, id: "task_end", class: "form-input mt-1 block w-full rounded-md focus:ring-blue-500 focus:border-blue-500" %>
+      <%= f.datetime_field :end_time, id: "task_end_time", class: "form-input mt-1 block w-full rounded-md focus:ring-blue-500 focus:border-blue-500" %>
       <% if task.errors.has_key?(:end_time) %>
         <p class="text-sm text-red-600"><%= task.errors.full_messages_for(:end_time).first %></p>
       <% end %>

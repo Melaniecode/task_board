@@ -12,15 +12,13 @@ RSpec.describe 'Task Management' do
   describe '.create' do
     before do
       visit new_task_path
-      within('form', wait: 10) do
-        fill_in 'task_title', with: title
-        fill_in 'task_content', with: content
-        select '待處理', from: 'task_status'
-        select '高', from: 'task_priority'
-        fill_in 'task_start_time', with: start_time
-        fill_in 'task_end_time', with: end_time
-        click_on I18n.t('helpers.submit.create')
-      end
+      fill_in 'task_title', with: title
+      fill_in 'task_content', with: content
+      select '待處理', from: 'task_status'
+      select '高', from: 'task_priority'
+      fill_in 'task_start_time', with: start_time
+      fill_in 'task_end_time', with: end_time
+      click_on I18n.t('tasks.index.confirm')
     end
 
     context 'when view the tasks' do
@@ -29,7 +27,7 @@ RSpec.describe 'Task Management' do
       let(:start_time) { '2024-06-07 10:00' }
       let(:end_time) { '2024-06-07 12:00' }
 
-      it { expect(page).to have_content('任務新增成功！') }
+      it { expect(page).to have_content('新增成功！') }
       it { expect(page).to have_content('New Title') }
       it { expect(page).to have_current_path(tasks_path) }
     end
@@ -53,7 +51,7 @@ RSpec.describe 'Task Management' do
       select '低', from: 'task_priority'
       fill_in 'task_start_time', with: start_time
       fill_in 'task_end_time', with: end_time
-      click_on I18n.t('helpers.submit.update')
+      click_on I18n.t('tasks.index.confirm')
     end
 
     context 'when is valid' do
@@ -62,7 +60,7 @@ RSpec.describe 'Task Management' do
       let(:start_time) { '2024-06-07 10:00' }
       let(:end_time) { '2024-06-07 12:00' }
 
-      it { expect(page).to have_content('任務更新成功！') }
+      it { expect(page).to have_content('更新成功！') }
       it { expect(page).to have_content('Update Title') }
     end
 
