@@ -1,89 +1,50 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe 'User Management' do
-#   describe 'Sign Up' do
-#     before do
-#       visit sign_up_path
-#     end
+RSpec.describe 'User Management' do
+  let(:user) { create(:user) }
 
-#     context 'when signing up with valid information' do
-#       before do
-#         fill_in_sign_up_form('Regular', 'John Doe', 'newuser@example.com', 'password', 'password')
-#         click_on I18n.t('registrations.new.sign_up')
-#       end
+  describe 'Log In' do
+    let!(:user) { create(:user) }
 
-#       it 'redirects to log in page' do
-#         expect(page).to have_current_path(log_in_path)
-#       end
+    before do
+      visit log_in_path
+      user_login(user)
+    end
 
-#       it 'displays account create succeed notice' do
-#         expect(page).to have_content(I18n.t('account_create_succeed'))
-#       end
-#     end
+    context 'when logging in with valid credentials' do
+      it { expect(page).to have_current_path(root_path) }
+      it { expect(page).to have_content(I18n.t('log_in_succeed')) }
+    end
 
-#     context 'when signing up with invalid information' do
-#       before do
-#         click_on I18n.t('registrations.new.sign_up')
-#       end
+    context 'when logging out' do
+      before do
+        click_on I18n.t('sessions.new.log_out')
+      end
 
-#       it 'displays errors for missing fields' do
-#         expect(page).to have_content("Authority #{I18n.t('errors.messages.blank')}")
-#         expect(page).to have_content("Name #{I18n.t('errors.messages.blank')}")
-#         expect(page).to have_content("Email #{I18n.t('errors.messages.blank')}")
-#         expect(page).to have_content("Password #{I18n.t('errors.messages.blank')}")
-#       end
-#     end
-#   end
+      it { expect(page).to have_current_path(log_in_path) }
+      it { expect(page).to have_content(I18n.t('log_out_succeed')) }
+    end
+  end
 
-#   describe 'Log In' do
-#     let!(:user) { create(:user, email: 'user@example.com', password: 'password') }
+  describe 'Sign Up' do
+    before do
+      visit sign_up_path
+    end
 
-#     before do
-#       visit log_in_path
-#     end
+    context 'when signing up with valid information' do
+      before do
+        select '一般使用者', from: 'user_authority'
+        fill_in 'user_name', with: 'Melanie'
+        fill_in 'user_email', with: 'melanie@example.com'
+        fill_in 'user_password', with: '123456789'
+        fill_in 'user_password_confirmation', with: '123456789'
+        click_on I18n.t('registrations.new.sign_up'), match: :first
+      end
 
-#     context 'when logging in with valid credentials' do
-#       before do
-#         fill_in 'Email', with: 'user@example.com'
-#         fill_in 'Password', with: 'password'
-#         click_on I18n.t('sessions.new.log_in')
-#       end
-
-#       it 'redirects to root' do
-#         expect(page).to have_current_path(root_path)
-#       end
-
-#       it 'displays log in succeed notice' do
-#         expect(page).to have_content(I18n.t('log_in_succeed'))
-#       end
-#     end
-
-#     context 'when logging in with invalid credentials' do
-#       before do
-#         fill_in 'Email', with: 'invalid@example.com'
-#         fill_in 'Password', with: 'invalid_password'
-#         click_on I18n.t('sessions.new.log_in')
-#       end
-
-#       it 'redirects back to log in page' do
-#         expect(page).to have_current_path(log_in_path)
-#       end
-
-#       it 'displays invalid log in alert' do
-#         expect(page).to have_content(I18n.t('invalid_log_in'))
-#       end
-#     end
-#   end
-
-#   private
-
-#   def fill_in_sign_up_form(authority, name, email, password, password_confirmation)
-#     select authority, from: 'Authority'
-#     fill_in 'Name', with: name
-#     fill_in 'Email', with: email
-#     fill_in 'Password', with: password
-#     fill_in 'Password Confirmation', with: password_confirmation
-#   end
-# end
+      it { expect(page).to have_current_path(log_in_path) }
+      it { expect(page).to have_content(I18n.t('account_create_succeed')) }
+    end
+  end
+end
