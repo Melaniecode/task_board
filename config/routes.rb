@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
   resources :tasks
 
+  # error
+  match '/404', to: 'errors#not_found', via: :all
+  match '/422', to: 'errors#unprocessable_entity', via: :all
+  match '/500', to: 'errors#server_error', via: :all
+
   # Defines the root path route ("/")
   root 'tasks#index'
 end
