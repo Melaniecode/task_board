@@ -1,0 +1,38 @@
+<div class="page-container w-full mx-auto px-4">
+  <h1 class="tasks-page-title text-2xl font-bold mb-4"><%= t('.users_page') %></h1>
+  <div class="flex justify-between items-center mb-4">
+    <%= link_to t('.create'), new_admin_user_path, class: "bg-blue-500 text-white px-4 py-2 rounded task-create-link" %>
+  </div>
+
+  <table class="task-table w-full border-collapse">
+    <thead class="task-table-header bg-gray-200">
+      <tr>
+        <th class="task-table-cell px-4 py-2 border"><%= User.human_attribute_name :name %></th>
+        <th class="task-table-cell px-4 py-2 border"><%= User.human_attribute_name :email %></th>
+        <th class="task-table-cell px-4 py-2 border"><%= User.human_attribute_name :authority %></th>
+        <th class="task-table-cell px-4 py-2 border"><%= t('admin.users.index.tasks_count') %></th>
+        <th class="task-table-cell px-4 py-2 border"><%= t('.actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class="task-row border-b border-gray-300" id="task-row-<%= user.id %>">
+          <td class="task-table-cell px-4 py-2 border"><%= user.name %></td>
+          <td class="task-table-cell px-4 py-2 border"><%= user.email %></td>
+          <td class="task-table-cell px-4 py-2 border"><%= user.authority %></td>
+          <td class="task-table-cell px-4 py-2 border"><%= user.tasks.count %></td>
+          <td class="task-table-cell px-4 py-2 border">
+            <div class="flex space-x-2 task-action-buttons" id="task-action-buttons-<%= user.id %>">
+              <%= link_to t('.edit'), edit_admin_user_path(user), id: "task-edit-link-#{user.id}", class: "bg-yellow-500 text-white px-2 py-1 rounded" %>
+              <%= button_to t('.delete'), admin_user_path(user), method: :delete, id: "task-delete-button-#{user.id}", class: "bg-red-500 text-white px-2 py-1 rounded" %>
+              <%= link_to t('.see_more'), tasks_admin_user_path(user), id: "task-see-more-link-#{user.id}", class: "bg-blue-500 text-white px-2 py-1 rounded" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @users %>
+  </div>
+</div>
