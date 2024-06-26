@@ -1,0 +1,42 @@
+<div class="flex justify-center items-center h-auto">
+  <div class="max-w-md w-full bg-white border border-gray-300 rounded-lg shadow-md p-6">
+    <%= form_with model: @user, url: @user.persisted? ? admin_user_path(@user) : admin_users_path, method: @user.persisted? ? :patch : :post, local: true do |form| %>
+      <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+          <% form.object.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :authority, class: "block mb-2 text-sm font-medium text-gray-700" %>
+        <%= form.select :authority, options_for_select(authority_options_for_select), {}, class: "form-control block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-700" %>
+        <%= form.text_field :name, class: "form-control block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: "block mb-2 text-sm font-medium text-gray-700" %>
+        <%= form.text_field :email, class: "form-control block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500", placeholder: "chiu_jm@gmail.com" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, class: "block mb-2 text-sm font-medium text-gray-700" %>
+        <%= form.password_field :password, class: "form-control block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password_confirmation, class: "block mb-2 text-sm font-medium text-gray-700" %>
+        <%= form.password_field :password_confirmation, class: "form-control block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.submit t('tasks.index.confirm'), class: "btn btn-primary w-full py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>

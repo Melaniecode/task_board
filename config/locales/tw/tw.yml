@@ -39,10 +39,16 @@ tw:
         see_more: 查看更多
       new: 
         users_manage: 管理使用者
+        form_title:  新增使用者
+        tasks_page: 任務列表
+      edit:
+        edit_page: 修改使用者
+        form_title: 修改使用者
 
   helpers:
     submit:
       create: 新增
+      edit: 修改
 
   create_succeed: 新增成功！
   account_create_succeed: 註冊成功，請登入！
