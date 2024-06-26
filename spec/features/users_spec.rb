@@ -34,7 +34,7 @@ RSpec.describe 'User Management' do
       fill_in 'user_email', with: 'melanie@example.com'
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
-      select 'Admin', from: 'user_authority'
+      select '一般使用者', from: 'user_authority'
       find(:button, I18n.t('registrations.new.sign_up'), match: :first).click
     end
 
