@@ -5,11 +5,7 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-<<<<<<< HEAD
-    @tasks = Task.filter(params).order(sort_by)
-=======
     @tasks = Task.filter(params).order(sort_by).page(params[:page]).per(10)
->>>>>>> fc8fcd2 (finished add kaminari)
   end
 
   def new

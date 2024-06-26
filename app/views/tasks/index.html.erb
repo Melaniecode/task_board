@@ -1,53 +1,49 @@
-<div class="page-container">
-  <h1 class="text-2xl font-bold mb-4"><%= t('.tasks_page') %></h1>
+<div class="page-container w-full mx-auto px-4">
+  <h1 class="tasks-page-title"><%= t('.tasks_page') %></h1>
   <div class="flex justify-between items-center mb-4">
-    <%= link_to t('.create'), new_task_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-    <%= form_with(url: create_sample_tasks_path, method: :post, class: "inline-block") do |form| %>
-      <%= form.submit '隨意新增10筆資料', class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
-    <% end %>
+    <%= link_to t('.create'), new_task_path, class: "task-create-link" %>
   </div>
 
-  <%= form_tag(tasks_path, method: "get", id: 'sort', class: "mb-4") do %>
-    <div class="flex space-x-4">
-      <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), id: "title", class: "border border-gray-300 rounded p-2" %>
-      <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "border border-gray-300 rounded p-2.3" %>
-      <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "border border-gray-300 rounded p-2.3" %>
-      <%= submit_tag t('.confirm'), name: nil, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <%= form_tag(tasks_path, method: "get", class: 'sort-form w-full') do %>
+    <div class="flex space-x-4 w-full" id="sort">
+      <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), class: "task-title w-full" %>
+      <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "task-status w-full" %>
+      <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "task-sort-by w-full" %>
+      <%= submit_tag t('.confirm'), name: nil, class: "sort-form-submit" %>
     </div>
   <% end %>
 
-  <table class="min-w-full bg-white border border-gray-300">
-    <thead class="bg-gray-200">
+  <table class="task-table w-full">
+    <thead class="task-table-header">
       <tr>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 14%;"><%= Task.human_attribute_name :title %></th>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 14%;"><%= Task.human_attribute_name :status %></th>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 14%;"><%= Task.human_attribute_name :priority %></th>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 14%;"><%= Task.human_attribute_name :start_time %></th>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 14%;"><%= Task.human_attribute_name :end_time %></th>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 14%;"><%= Task.human_attribute_name :content %></th>
-        <th class="py-2 px-4 border-b border-gray-300" style="width: 16%;"><%= t('.actions') %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :title %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :status %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :priority %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :start_time %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :end_time %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :content %></th>
+        <th class="task-table-cell"><%= t('.actions') %></th>
       </tr>
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
-        <tr class="border-b border-gray-300">
-          <td class="py-2 px-4"><%= task.title %></td>
-          <td class="py-2 px-4"><%= status_i18n(task.status) %></td>
-          <td class="py-2 px-4"><%= priority_i18n(task.priority) %></td>
-          <td class="py-2 px-4"><%= task.start_time %></td>
-          <td class="py-2 px-4"><%= task.end_time %></td>
-          <td class="py-2 px-4"><%= task.content %></td>
-          <td class="py-2 px-4">
-            <div class="flex space-x-2">
-              <%= link_to t('.edit'), edit_task_path(task), class: "bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded" %>
-              <%= button_to t('.delete'), task_path(task), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" %>
+        <tr class="task-row border-b border-gray-300" id="task-row-<%= task.id %>">
+          <td class="task-table-cell"><%= task.title %></td>
+          <td class="task-table-cell"><%= status_i18n(task.status) %></td>
+          <td class="task-table-cell"><%= priority_i18n(task.priority) %></td>
+          <td class="task-table-cell"><%= task.start_time %></td>
+          <td class="task-table-cell"><%= task.end_time %></td>
+          <td class="task-table-cell"><%= task.content %></td>
+          <td class="task-table-cell">
+            <div class="flex space-x-2 task-action-buttons" id="task-action-buttons-<%= task.id %>">
+              <%= link_to t('.edit'), edit_task_path(task), id: "task-edit-link-#{task.id}" %>
+              <%= button_to t('.delete'), task_path(task), method: :delete, id: "task-delete-button-#{task.id}" %>
             </div>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
   <div class="pagination">
     <%= paginate @tasks %>
   </div>
