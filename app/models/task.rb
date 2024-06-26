@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   has_many :tags_tasks, dependent: :destroy
   has_many :tags, through: :tags_tasks
 
@@ -20,20 +20,7 @@ class Task < ApplicationRecord
   scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
   scope :status_search, ->(status) { where(status:) if status.present? }
 
-  def self.filter(params)
-    title_search(params[:title]).status_search(params[:status])
-  end
-
-  def self.create_sample_tasks
-    10.times do
-      create!(
-        title: Faker::Lorem.sentence,
-        content: Faker::Lorem.paragraph,
-        start_time: Faker::Time.between(from: DateTime.now - 20, to: DateTime.now),
-        end_time: Faker::Time.between(from: DateTime.now + 1, to: DateTime.now + 20),
-        priority: %w[low medium high].sample,
-        status: %w[pending in_progress done].sample
-      )
-    end
+  def self.filter(params, current_user)
+    current_user.tasks.title_search(params[:title]).status_search(params[:status])
   end
 end

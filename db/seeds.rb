@@ -12,3 +12,12 @@
 # db/seeds.rb
 
 # Seed tasks
+require 'factory_bot_rails'
+
+user = FactoryBot.create(:user, :normal) if User.all.empty?
+
+if user
+  10.times do
+    FactoryBot.create(:task, user_id: user.id)
+  end
+end

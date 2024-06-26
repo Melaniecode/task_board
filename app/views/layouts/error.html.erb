@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="/assets/tailwind.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-gray-900 font-sans">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
+            <%= yield %>
+        </div>
+    </div>
+</body>
+
+</html>
