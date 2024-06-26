@@ -25,3 +25,4 @@ class SessionsController < ApplicationController
     user = User.find_by(email:)
     user if user&.authenticate(password)
   end
+end
