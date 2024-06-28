@@ -60,6 +60,8 @@ end
 
 gem 'rails-i18n'
 
+gem 'kaminari'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
@@ -78,3 +80,5 @@ group :test do
 end
 
 gem 'dockerfile-rails', '>= 1.6', group: :development
+
+gem 'tailwindcss-rails', '~> 2.6'

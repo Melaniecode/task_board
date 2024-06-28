@@ -8,7 +8,8 @@ RSpec.describe 'Task Sort Management' do
 
   describe '.order' do
     before do
-      create(:task, title: 'Task 1', content: 'Content 1', start_time: now, end_time: 5.days.from_now, priority: 'high')
+      create(:task, title: 'Task 1', content: 'Content 1', start_time: now, end_time: 5.days.from_now,
+                    priority: 'high')
       create(:task, title: 'Task 2', content: 'Content 2', start_time: now, end_time: 1.day.from_now, priority: 'low')
       visit '/tasks'
     end

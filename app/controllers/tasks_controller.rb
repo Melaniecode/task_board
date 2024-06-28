@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = Task.filter(params).order(sort_by)
+    @tasks = Task.filter(params).order(sort_by).page(params[:page]).per(10)
   end
 
   def new
