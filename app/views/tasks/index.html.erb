@@ -5,7 +5,7 @@
   </div>
 
   <%= form_tag(tasks_path, method: "get", class: 'sort-form w-full') do %>
-    <div class="flex space-x-4 w-full" id="sort">
+    <div class="flex space-x-4 w-full">
       <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), class: "task-title w-full" %>
       <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "task-status w-full" %>
       <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "task-sort-by w-full" %>
@@ -22,6 +22,7 @@
         <th class="task-table-cell"><%= Task.human_attribute_name :start_time %></th>
         <th class="task-table-cell"><%= Task.human_attribute_name :end_time %></th>
         <th class="task-table-cell"><%= Task.human_attribute_name :content %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :tag %></th>
         <th class="task-table-cell"><%= t('.actions') %></th>
       </tr>
     </thead>
@@ -34,6 +35,11 @@
           <td class="task-table-cell"><%= task.start_time %></td>
           <td class="task-table-cell"><%= task.end_time %></td>
           <td class="task-table-cell"><%= task.content %></td>
+          <td class="task-table-cell">
+            <% task.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </td>
           <td class="task-table-cell">
             <div class="flex space-x-2 task-action-buttons" id="task-action-buttons-<%= task.id %>">
               <%= link_to t('.edit'), edit_task_path(task), id: "task-edit-link-#{task.id}" %>

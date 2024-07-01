@@ -1,9 +1,6 @@
-<div class="flex justify-center items-center h-screen">
+<div class="flex justify-center items-center h-auto">
   <div class="max-w-md w-full bg-white border border-gray-300 rounded-lg shadow-md p-6">
-    <h2 class="text-xl font-semibold mb-4"><%= t('registrations.new.sign_up') %></h2>
-
-    <%= form_with model: @user, url: sign_up_path do |form| %>
-
+    <%= form_with model: @user, url: @user.persisted? ? admin_user_path(@user) : admin_users_path, method: @user.persisted? ? :patch : :post, local: true do |form| %>
       <% if form.object.errors.any? %>
         <div class="alert alert-danger">
           <% form.object.errors.full_messages.each do |message| %>
@@ -38,7 +35,7 @@
       </div>
 
       <div class="mb-3">
-        <%= form.submit t('registrations.new.sign_up'), class: "btn btn-primary w-full py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+        <%= form.submit t('tasks.index.confirm'), class: "btn btn-primary w-full py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
       </div>
     <% end %>
   </div>

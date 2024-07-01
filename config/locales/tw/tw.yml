@@ -10,7 +10,6 @@ tw:
       search_title: 標題搜尋
       confirm: 確定
       actions: 操作
-      log_out:  登出
     new:
       create_page: 任務新增
       back: 返回
@@ -26,11 +25,30 @@ tw:
       log_out: 登出
       tasks_page: 任務列表
       email: 電子郵件
-      password: 密碼
+      password: 密碼 
+  admin:
+    users:
+      index:
+        users_page: 使用者列表
+        delete: 刪除
+        edit: 修改
+        create: 新增
+        confirm: 確定
+        actions: 操作
+        tasks_count: 任務數量
+        see_more: 查看更多
+      new: 
+        users_manage: 管理使用者
+        form_title:  新增使用者
+        tasks_page: 任務列表
+      edit:
+        edit_page: 修改使用者
+        form_title: 修改使用者
 
   helpers:
     submit:
       create: 新增
+      edit: 修改
 
   create_succeed: 新增成功！
   account_create_succeed: 註冊成功，請登入！
@@ -40,6 +58,8 @@ tw:
   log_in_succeed: 登入成功！
   not_log_in: 你必須先登入才可以查看！
   invalid_log_in: 你的信箱或密碼有誤，請重新輸入！
+  access_denied: 權限不足！
+  cannot_delete_admin: 至少需有一個管理員！
 
   activerecord:
     attributes:
@@ -50,6 +70,8 @@ tw:
         priority: 優先權
         start_time: 開始時間
         end_time: 結束時間
+        tag_ids: 標籤選擇
+        new_tags: 新增標籤
       user:
         name: 姓名
         email: 信箱
