@@ -3,14 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Task Sort Management' do
-  let(:task) { create(:task) }
+  let!(:user) { create(:user) }
   let(:now) { Time.zone.now }
+
+  before { user_login(user) }
 
   describe '.order' do
     before do
       create(:task, title: 'Task 1', content: 'Content 1', start_time: now, end_time: 5.days.from_now,
-                    priority: 'high')
-      create(:task, title: 'Task 2', content: 'Content 2', start_time: now, end_time: 1.day.from_now, priority: 'low')
+                    priority: 'high', user:)
+      create(:task, title: 'Task 2', content: 'Content 2', start_time: now, end_time: 1.day.from_now, priority: 'low',
+                    user:)
       visit '/tasks'
     end
 
@@ -81,8 +84,8 @@ RSpec.describe 'Task Sort Management' do
 
   describe 'search' do
     before do
-      create(:task, title: 'Task 1', start_time: now, end_time: 5.days.from_now, status: 'done')
-      create(:task, title: 'Task 2', start_time: now, end_time: 1.day.from_now, status: 'in_progress')
+      create(:task, title: 'Task 1', start_time: now, end_time: 5.days.from_now, status: 'done', user:)
+      create(:task, title: 'Task 2', start_time: now, end_time: 1.day.from_now, status: 'in_progress', user:)
       visit '/tasks'
     end
 

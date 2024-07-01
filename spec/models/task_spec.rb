@@ -6,6 +6,7 @@ RSpec.describe Task do
   describe 'Associations' do
     it { is_expected.to have_many(:tags_tasks).dependent(:destroy) }
     it { is_expected.to have_many(:tags).through(:tags_tasks) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe 'Validations' do
@@ -41,6 +42,18 @@ RSpec.describe Task do
 
     describe '.status_search' do
       it { expect(described_class.status_search(:in_progress)).to contain_exactly(task1_inprogress, task2_inprogress) }
+    end
+  end
+
+  describe '.filter' do
+    context 'when filtering tasks by title and status for the current user' do
+      let(:user) { create(:user) }
+      let(:pending_task) { create(:task, title: 'Task 1', user:, status: :pending) }
+      let(:in_progress_task) { create(:task, title: 'Task 2', user:, status: :in_progress) }
+      let(:filtered_tasks) { described_class.filter({ title: 'Task 1', status: 'pending' }, user) }
+
+      it { expect(filtered_tasks).to include(pending_task) }
+      it { expect(filtered_tasks).not_to include(in_progress_task) }
     end
   end
 end

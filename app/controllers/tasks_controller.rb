@@ -2,10 +2,11 @@
 
 # Controller responsible for managing tasks in the application.
 class TasksController < ApplicationController
-  helper_method :task
+  helper_method :task, :current_user
+  before_action :require_user_logged_in!
 
   def index
-    @tasks = Task.filter(params).order(sort_by).page(params[:page]).per(10)
+    @tasks = Task.filter(params, current_user).order(sort_by).page(params[:page]).per(10)
   end
 
   def new
@@ -15,18 +16,12 @@ class TasksController < ApplicationController
   def edit; end
 
   def create
-    @task = Task.new(task_params)
-
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to tasks_path, notice: t('create_succeed')
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def create_sample_tasks
-    Task.create_sample_tasks
-    redirect_to tasks_path, notice: t('create_succeed')
   end
 
   def update
@@ -54,5 +49,9 @@ class TasksController < ApplicationController
 
   def sort_by
     params[:sort_by] || 'id asc'
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 end
