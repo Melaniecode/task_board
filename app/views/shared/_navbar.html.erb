@@ -5,9 +5,9 @@
         <%= link_to "Melanie 的 Task Board", root_path, class: "text-lg font-bold text-gray-200" %>
       </div>
       <div class="hidden sm:flex sm:items-center sm:space-x-4">
-        <% if Current.user %>
+        <% if @current_user %>
           <span class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-            <%= "歡迎登入  #{Current.user.name}" %>
+            <%= "歡迎登入  #{@current_user.name}" %>
           </span>
           <%= button_to t('sessions.new.log_out'), log_out_path, method: :delete, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>
         <% else %>
