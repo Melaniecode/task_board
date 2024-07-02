@@ -9,6 +9,7 @@
         <th class="task-table-cell px-4 py-2 border"><%= Task.human_attribute_name :priority %></th>
         <th class="task-table-cell px-4 py-2 border"><%= Task.human_attribute_name :start_time %></th>
         <th class="task-table-cell px-4 py-2 border"><%= Task.human_attribute_name :end_time %></th>
+        <th class="task-table-cell px-4 py-2 border"><%= Task.human_attribute_name :tag %></th>
         <th class="task-table-cell px-4 py-2 border"><%= Task.human_attribute_name :content %></th>
       </tr>
     </thead>
@@ -20,6 +21,11 @@
           <td class="task-table-cell px-4 py-2 border"><%= priority_i18n(task.priority) %></td>
           <td class="task-table-cell px-4 py-2 border"><%= task.start_time %></td>
           <td class="task-table-cell px-4 py-2 border"><%= task.end_time %></td>
+          <td class="task-table-cell">
+            <% task.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </td>
           <td class="task-table-cell px-4 py-2 border"><%= task.content %></td>
         </tr>
       <% end %>

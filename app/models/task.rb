@@ -19,8 +19,9 @@ class Task < ApplicationRecord
   end
   scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
   scope :status_search, ->(status) { where(status:) if status.present? }
+  scope :tag_search, ->(tag_ids) { joins(:tags).where(tags: { id: tag_ids }).distinct if tag_ids.present? }
 
   def self.filter(params, current_user)
-    current_user.tasks.title_search(params[:title]).status_search(params[:status])
+    current_user.tasks.title_search(params[:title]).status_search(params[:status]).tag_search(params[:tag_ids])
   end
 end

@@ -9,6 +9,7 @@
       <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), class: "task-title w-full" %>
       <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "task-status w-full" %>
       <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "task-sort-by w-full" %>
+      <%= select_tag :tag_ids, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_ids]), prompt: t(".search_tags"), class: "task-sort-by w-full" %>
       <%= submit_tag t('.confirm'), name: nil, class: "sort-form-submit" %>
     </div>
   <% end %>
