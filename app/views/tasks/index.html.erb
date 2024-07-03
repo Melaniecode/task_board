@@ -1,0 +1,50 @@
+<div class="page-container w-full mx-auto px-4">
+  <h1 class="tasks-page-title"><%= t('.tasks_page') %></h1>
+  <div class="flex justify-between items-center mb-4">
+    <%= link_to t('.create'), new_task_path, class: "task-create-link" %>
+  </div>
+
+  <%= form_tag(tasks_path, method: "get", class: 'sort-form w-full') do %>
+    <div class="flex space-x-4 w-full" id="sort">
+      <%= text_field_tag :title, params[:title], placeholder: t(".search_title"), class: "task-title w-full" %>
+      <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t(".search_status"), class: "task-status w-full" %>
+      <%= select_tag :sort_by, options_for_select(order_options, params[:sort_by]), prompt: t(".sort_by"), class: "task-sort-by w-full" %>
+      <%= submit_tag t('.confirm'), name: nil, class: "sort-form-submit" %>
+    </div>
+  <% end %>
+
+  <table class="task-table w-full">
+    <thead class="task-table-header">
+      <tr>
+        <th class="task-table-cell"><%= Task.human_attribute_name :title %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :status %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :priority %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :start_time %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :end_time %></th>
+        <th class="task-table-cell"><%= Task.human_attribute_name :content %></th>
+        <th class="task-table-cell"><%= t('.actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr class="task-row border-b border-gray-300" id="task-row-<%= task.id %>">
+          <td class="task-table-cell"><%= task.title %></td>
+          <td class="task-table-cell"><%= status_i18n(task.status) %></td>
+          <td class="task-table-cell"><%= priority_i18n(task.priority) %></td>
+          <td class="task-table-cell"><%= task.start_time %></td>
+          <td class="task-table-cell"><%= task.end_time %></td>
+          <td class="task-table-cell"><%= task.content %></td>
+          <td class="task-table-cell">
+            <div class="flex space-x-2 task-action-buttons" id="task-action-buttons-<%= task.id %>">
+              <%= link_to t('.edit'), edit_task_path(task), id: "task-edit-link-#{task.id}" %>
+              <%= button_to t('.delete'), task_path(task), method: :delete, id: "task-delete-button-#{task.id}" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <%= paginate @tasks %>
+  </div>
+</div>
