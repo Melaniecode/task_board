@@ -17,10 +17,15 @@ class Task < ApplicationRecord
 
     errors.add(:start_time, :start_time_before_end_time)
   end
-  scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
-  scope :status_search, ->(status) { where(status:) if status.present? }
+  scope :filter_by_title, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
+  scope :filter_by_status, ->(status) { where(status:) }
+  scope :filter_by_priority, ->(priority) { where(priority:) }
 
-  def self.filter(params, current_user)
-    current_user.tasks.title_search(params[:title]).status_search(params[:status])
-  end
+  scope :filter_by, lambda { |f|
+    results = where(nil)
+    f.each do |key, value|
+      results = results.public_send(:"filter_by_#{key}", value) if value.present?
+    end
+    results
+  }
 end

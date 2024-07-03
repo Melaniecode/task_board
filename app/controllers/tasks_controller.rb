@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Controller responsible for managing tasks in the application.
 class TasksController < ApplicationController
   helper_method :task, :current_user
   before_action :require_user_logged_in!
 
   def index
-    @tasks = Task.filter(params, current_user).order(sort_by).page(params[:page]).per(10)
+    @tasks = current_user.tasks.filter_by(params.slice(:status, :priority,
+                                                       :title)).order(sort_by).page(params[:page]).per(10)
   end
 
   def new
@@ -49,9 +49,5 @@ class TasksController < ApplicationController
 
   def sort_by
     params[:sort_by] || 'id asc'
-  end
-
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
   end
 end

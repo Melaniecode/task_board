@@ -32,28 +32,24 @@ RSpec.describe Task do
   end
 
   describe 'Search' do
-    let(:task1_done) { create(:task, title: 'Task 1', status: 'done') }
-    let(:task2_inprogress) { create(:task, title: 'Task 2', status: 'in_progress') }
-    let(:task1_inprogress) { create(:task, title: 'Task 1', status: 'in_progress') }
+    let(:task1_done) { create(:task, title: 'Task 1', status: 'done', priority: 'high') }
+    let(:task2_inprogress) { create(:task, title: 'Task 2', status: 'in_progress', priority: 'low') }
+    let(:task1_inprogress) { create(:task, title: 'Task 1', status: 'in_progress', priority: 'low') }
 
     describe '.title_search' do
-      it { expect(described_class.title_search('Task 1')).to contain_exactly(task1_done, task1_inprogress) }
+      it { expect(described_class.filter_by_title('Task 1')).to contain_exactly(task1_done, task1_inprogress) }
     end
 
     describe '.status_search' do
-      it { expect(described_class.status_search(:in_progress)).to contain_exactly(task1_inprogress, task2_inprogress) }
+      it {
+        expect(described_class.filter_by_status(:in_progress)).to contain_exactly(task1_inprogress, task2_inprogress)
+      }
     end
-  end
 
-  describe '.filter' do
-    context 'when filtering tasks by title and status for the current user' do
-      let(:user) { create(:user) }
-      let(:pending_task) { create(:task, title: 'Task 1', user:, status: :pending) }
-      let(:in_progress_task) { create(:task, title: 'Task 2', user:, status: :in_progress) }
-      let(:filtered_tasks) { described_class.filter({ title: 'Task 1', status: 'pending' }, user) }
-
-      it { expect(filtered_tasks).to include(pending_task) }
-      it { expect(filtered_tasks).not_to include(in_progress_task) }
+    describe '.priority_search' do
+      it {
+        expect(described_class.filter_by_priority(:low)).to contain_exactly(task1_inprogress, task2_inprogress)
+      }
     end
   end
 end

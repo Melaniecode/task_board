@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  skip_before_action :set_current_user, only: %i[new create]
+  helper_method :current_user
 
   def new; end
 
