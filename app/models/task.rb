@@ -20,7 +20,6 @@ class Task < ApplicationRecord
   scope :filter_by_title, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
   scope :filter_by_status, ->(status) { where(status:) }
   scope :filter_by_priority, ->(priority) { where(priority:) }
-
   scope :filter_by, lambda { |f|
     results = where(nil)
     f.each do |key, value|
