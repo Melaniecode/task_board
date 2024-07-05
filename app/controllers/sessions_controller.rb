@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  helper_method :current_user
-
   def new; end
 
   def create

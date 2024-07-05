@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  helper_method :task, :current_user
+  helper_method :task
   before_action :require_user_logged_in!
 
   def index
