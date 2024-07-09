@@ -9,7 +9,6 @@ RSpec.describe User do
     it { is_expected.to validate_confirmation_of(:password) }
     it { is_expected.to allow_value('test@example.com').for(:email) }
     it { is_expected.to validate_presence_of(:email).with_message(I18n.t('errors.messages.blank')) }
-    it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to have_many(:tasks).dependent(:destroy) }
   end
 

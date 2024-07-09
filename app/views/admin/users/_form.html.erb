@@ -1,9 +1,9 @@
 <div class="flex justify-center items-center h-auto">
   <div class="max-w-md w-full bg-white border border-gray-300 rounded-lg shadow-md p-6">
-    <%= form_with model: @user, url: @user.persisted? ? admin_user_path(@user) : admin_users_path, method: @user.persisted? ? :patch : :post, local: true do |form| %>
-      <% if form.object.errors.any? %>
+   <%= form_with model: user, url: user.persisted? ? admin_user_path(user) : admin_users_path, local: true do |form| %>
+      <% if user.errors.any? %> 
         <div class="alert alert-danger">
-          <% form.object.errors.full_messages.each do |message| %>
+          <% user.errors.full_messages.each do |message| %>
             <div><%= message %></div>
           <% end %>
         </div>
