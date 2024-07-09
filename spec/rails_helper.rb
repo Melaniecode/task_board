@@ -79,3 +79,26 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+private
+
+def user_login(user)
+  visit log_in_path
+  within('#login_form_container') do
+    fill_in 'email', with: user.email
+    fill_in 'password', with: user.password
+    click_on I18n.t('sessions.new.log_in')
+  end
+end
+
+def sign_up_as_admin
+  visit sign_up_path
+
+  fill_in 'user_name', with: 'Melanie'
+  fill_in 'user_email', with: 'melanie@example.com'
+  fill_in 'user_password', with: 'password'
+  fill_in 'user_password_confirmation', with: 'password'
+  select 'Admin', from: 'user_authority'
+
+  click_on I18n.t('registrations.new.sign_up'), match: :first
+end

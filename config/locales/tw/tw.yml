@@ -10,21 +10,36 @@ tw:
       search_title: 標題搜尋
       confirm: 確定
       actions: 操作
+      log_out:  登出
     new:
       create_page: 任務新增
       back: 返回
     edit:
       edit_page: 任務修改
       back: 返回
+  registrations:
+    new:
+      sign_up: 註冊
+  sessions:
+    new:
+      log_in: 登入
+      log_out: 登出
+      tasks_page: 任務列表
+      email: 電子郵件
+      password: 密碼
 
   helpers:
     submit:
       create: 新增
-      update: 更新
 
-  create_succeed: 任務新增成功！
-  delete_succeed: 任務刪除成功！
-  edit_succeed: 任務更新成功！
+  create_succeed: 新增成功！
+  account_create_succeed: 註冊成功，請登入！
+  delete_succeed: 刪除成功！
+  edit_succeed: 更新成功！
+  log_out_succeed: 登出成功！
+  log_in_succeed: 登入成功！
+  not_log_in: 你必須先登入才可以查看！
+  invalid_log_in: 你的信箱或密碼有誤，請重新輸入！
 
   activerecord:
     attributes:
@@ -35,6 +50,12 @@ tw:
         priority: 優先權
         start_time: 開始時間
         end_time: 結束時間
+      user:
+        name: 姓名
+        email: 信箱
+        authority: 使用者
+        password: 密碼
+        password_confirmation: 確認密碼
 
     enums:
       task:
@@ -46,12 +67,19 @@ tw:
           low: 低
           medium: 中
           high: 高
+      user:
+        authorities:
+          admin: 管理員
+          normal: 一般使用者
 
   errors:
     messages:
       blank: 不能為空
       start_time_before_end_time: 要早於結束時間
       record_invalid: 無效記錄
+      taken: 已被使用
+      confirmation: 與密碼不相符
+      valid_email_address: 必須是有效的電子郵件
 
   order_options:
     created_at_desc: 依創建時間降冪排序

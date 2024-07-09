@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   has_many :tags_tasks, dependent: :destroy
   has_many :tags, through: :tags_tasks
 
@@ -17,23 +17,15 @@ class Task < ApplicationRecord
 
     errors.add(:start_time, :start_time_before_end_time)
   end
-  scope :title_search, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
-  scope :status_search, ->(status) { where(status:) if status.present? }
+  scope :filter_by_title, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
+  scope :filter_by_status, ->(status) { where(status:) }
+  scope :filter_by_priority, ->(priority) { where(priority:) }
 
-  def self.filter(params)
-    title_search(params[:title]).status_search(params[:status])
-  end
-
-  def self.create_sample_tasks
-    10.times do
-      create!(
-        title: Faker::Lorem.sentence,
-        content: Faker::Lorem.paragraph,
-        start_time: Faker::Time.between(from: DateTime.now - 20, to: DateTime.now),
-        end_time: Faker::Time.between(from: DateTime.now + 1, to: DateTime.now + 20),
-        priority: %w[low medium high].sample,
-        status: %w[pending in_progress done].sample
-      )
+  scope :filter_by, lambda { |f|
+    results = where(nil)
+    f.each do |key, value|
+      results = results.public_send(:"filter_by_#{key}", value) if value.present?
     end
-  end
+    results
+  }
 end

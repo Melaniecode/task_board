@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Task Management' do
-  let!(:task) { create(:task) }
+  let!(:user) { create(:user) }
+  let!(:task) { create(:task, user:) }
+
+  before { user_login(user) }
 
   describe '.create' do
     before do

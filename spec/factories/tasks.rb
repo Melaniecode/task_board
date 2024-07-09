@@ -8,5 +8,9 @@ FactoryBot.define do
     end_time { Faker::Time.forward(days: 1, period: :evening) }
     status { Task.statuses.keys.sample }
     priority { Task.priorities.keys.sample }
+    user
+    trait :with_user do
+      user
+    end
   end
 end

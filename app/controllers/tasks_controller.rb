@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-# Controller responsible for managing tasks in the application.
 class TasksController < ApplicationController
   helper_method :task
+  before_action :require_user_logged_in!
 
   def index
-    @tasks = Task.filter(params).order(sort_by).page(params[:page]).per(10)
+    @tasks = current_user.tasks.filter_by(params.slice(:status, :priority,
+                                                       :title)).order(sort_by).page(params[:page]).per(10)
   end
 
   def new
@@ -15,18 +16,12 @@ class TasksController < ApplicationController
   def edit; end
 
   def create
-    @task = Task.new(task_params)
-
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to tasks_path, notice: t('create_succeed')
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def create_sample_tasks
-    Task.create_sample_tasks
-    redirect_to tasks_path, notice: t('create_succeed')
   end
 
   def update
