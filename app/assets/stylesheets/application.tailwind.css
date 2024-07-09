@@ -205,6 +205,7 @@
 .task-action-buttons a {
   background-color: #4299e1;
   color: #ffffff;
+  text-decoration: none;
 }
 
 .task-action-buttons button {
@@ -228,3 +229,4 @@
 .h-full {
   height: 100vh;
 }
+
