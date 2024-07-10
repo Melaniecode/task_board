@@ -32,24 +32,34 @@ RSpec.describe Task do
   end
 
   describe 'Search' do
-    let(:task1_done) { create(:task, title: 'Task 1', status: 'done', priority: 'high') }
-    let(:task2_inprogress) { create(:task, title: 'Task 2', status: 'in_progress', priority: 'low') }
-    let(:task1_inprogress) { create(:task, title: 'Task 1', status: 'in_progress', priority: 'low') }
+    let(:tag1_first) { create(:tag, name: 'Tag1') }
+    let(:tag2) { create(:tag, name: 'Tag2') }
+    let(:task1_done) { create(:task, title: 'Task 1', status: :done, priority: :high, tags: [tag1_first]) }
+    let(:task2_inprogress) { create(:task, title: 'Task 2', status: :in_progress, priority: :low, tags: [tag1_first]) }
+    let(:task1_inprogress) { create(:task, title: 'Task 1', status: :in_progress, priority: :low, tags: [tag2]) }
 
     describe '.title_search' do
-      it { expect(described_class.filter_by_title('Task 1')).to contain_exactly(task1_done, task1_inprogress) }
+      it 'returns tasks matching the title' do
+        expect(described_class.filter_by_title('Task 1')).to contain_exactly(task1_done, task1_inprogress)
+      end
     end
 
     describe '.status_search' do
-      it {
+      it 'returns tasks matching the status' do
         expect(described_class.filter_by_status(:in_progress)).to contain_exactly(task1_inprogress, task2_inprogress)
-      }
+      end
     end
 
     describe '.priority_search' do
-      it {
+      it 'returns tasks matching the priority' do
         expect(described_class.filter_by_priority(:low)).to contain_exactly(task1_inprogress, task2_inprogress)
-      }
+      end
+    end
+
+    describe '.tag_search' do
+      it 'returns tasks matching the tag' do
+        expect(described_class.filter_by_tag_ids(tag1_first.id)).to contain_exactly(task1_done, task2_inprogress)
+      end
     end
   end
 end
