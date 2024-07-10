@@ -89,8 +89,8 @@ RSpec.describe 'Task Sort Management' do
     before do
       tag1 = create(:tag, name: 'tag1')
       tag2 = create(:tag, name: 'tag2')
-      create(:task, title: 'Task 1', start_time: now, end_time: 5.days.from_now, status: 'done', tags: [tag1], user:)
-      create(:task, title: 'Task 2', start_time: now, end_time: 1.day.from_now, status: 'in_progress', tags: [tag2],
+      create(:task, title: 'Task 1', start_time: now, end_time: 5.days.from_now, status: 'done', tags: [tag2], user:)
+      create(:task, title: 'Task 2', start_time: now, end_time: 1.day.from_now, status: 'in_progress', tags: [tag1],
                     user:)
       visit '/tasks'
     end
@@ -99,12 +99,12 @@ RSpec.describe 'Task Sort Management' do
       before do
         fill_in 'title', with: 'Task 1'
         select '已完成', from: 'status'
-        select 'tag1', from: 'tag_ids'
+        select 'tag2', from: 'tag_ids'
         click_on I18n.t('tasks.index.confirm')
       end
 
       it { expect(find(first_tr)).to have_text('Task 1') }
-      it { expect(find(first_tr)).to have_no_text('tag2') }
+      it { expect(find(first_tr)).to have_no_text('tag1') }
       it { expect(page).to have_no_text('Task 2') }
     end
   end

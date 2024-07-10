@@ -18,13 +18,18 @@ class Task < ApplicationRecord
     errors.add(:start_time, :start_time_before_end_time)
   end
   scope :filter_by_title, ->(title) { where('title ILIKE ?', "%#{title}%") if title.present? }
-  scope :filter_by_status, ->(status) { where(status:) }
-  scope :filter_by_priority, ->(priority) { where(priority:) }
+  scope :filter_by_status, ->(status) { where(status:) if status.present? }
+  scope :filter_by_priority, ->(priority) { where(priority:) if priority.present? }
+  scope :filter_by_tag_ids, ->(tag_ids) { joins(:tags).where(tags: { id: tag_ids }).distinct if tag_ids.present? }
 
   scope :filter_by, lambda { |f|
     results = where(nil)
     f.each do |key, value|
-      results = results.public_send(:"filter_by_#{key}", value) if value.present?
+      if key == :tag_ids
+        results = results.public_send.filter_by_tag_ids if value.present?
+      else
+        results = results.public_send(:"filter_by_#{key}", value)
+      end
     end
     results
   }
