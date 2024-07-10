@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.filter_by(params.slice(:status, :priority,
-                                                       :title)).order(sort_by).page(params[:page]).per(10)
+                                                       :title, :tag_ids)).order(sort_by).page(params[:page]).per(10)
   end
 
   def new
