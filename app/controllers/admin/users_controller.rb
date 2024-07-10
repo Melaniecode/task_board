@@ -33,11 +33,10 @@ module Admin
     end
 
     def destroy
-      if User.where(authority: 'admin').count == 1 && user.admin?
-        redirect_to admin_users_path, alert: t('cannot_delete_admin')
-      else
-        user.destroy
+      if user.destroy
         redirect_to admin_users_path, notice: t('delete_succeed')
+      else
+        redirect_to admin_users_path, alert: t('cannot_delete_admin')
       end
     end
 

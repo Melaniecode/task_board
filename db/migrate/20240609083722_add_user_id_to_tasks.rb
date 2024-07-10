@@ -1,7 +1,11 @@
 class AddUserIdToTasks < ActiveRecord::Migration[7.1]
-  def change
+  def up
     add_reference :tasks, :user
-    Task.where(user_id: nil).update_all(user_id: User.first.id)
+    execute "UPDATE tasks SET user_id = #{User.first.id} WHERE user_id IS NULL;" if User.exists?
     change_column_null :tasks, :user_id, false
+  end
+
+  def down
+    remove_reference :tasks, :user
   end
 end
