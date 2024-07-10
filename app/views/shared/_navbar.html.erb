@@ -9,6 +9,9 @@
           <span class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium">
             <%= "歡迎登入  #{@current_user.name}" %>
           </span>
+          <% if @current_user.admin? %>
+            <%= link_to t('admin.users.new.users_manage'), admin_users_path, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>
+          <% end %>
           <%= button_to t('sessions.new.log_out'), log_out_path, method: :delete, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>
         <% else %>
           <%= link_to t('sessions.new.log_in'), log_in_path, class: "text-gray-200 hover:text-white px-3 py-2 rounded-md text-base font-medium" %>

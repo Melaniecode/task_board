@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :tasks
 
+  namespace :admin do
+    resources :users
+  end
+
   # Defines the root path route ("/")
   root 'tasks#index'
 end
