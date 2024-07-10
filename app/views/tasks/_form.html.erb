@@ -42,6 +42,20 @@
         <p class="text-sm text-red-600"><%= task.errors.full_messages_for(:priority).first %></p>
       <% end %>
     </div>
+    <div class="mb-3">
+      <%= f.label :tag_ids, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.select :tag_ids, options_from_collection_for_select(Tag.all, :id, :name, task.tag_ids), { prompt: "" }, multiple: true, class: "form-select mt-1 block w-full rounded-md focus:ring-blue-500 focus:border-blue-500" %>
+      <% if task.errors.has_key?(:tag_ids) %>
+        <p class="text-sm text-red-600"><%= task.errors.full_messages_for(:tag_ids).first %></p>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :new_tags, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :new_tags, id: "task_new_tags", placeholder: "新增標籤, 如需創建多個請用,分開", class: "bg-gray-50 border-b border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+      <% if task.errors.has_key?(:new_tags) %>
+        <p class="text-sm text-red-600"><%= task.errors.full_messages_for(:new_tags).first %></p>
+      <% end %>
+    </div>
     <div class="flex justify-between mb-3">
       <%= link_to t('tasks.new.back'), tasks_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5" %>
       <%= f.submit t('tasks.index.confirm'), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5" %>

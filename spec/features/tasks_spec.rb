@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Task Management' do
   let!(:user) { create(:user) }
   let!(:task) { create(:task, user:) }
+  let!(:tags) { create_list(:tag, 2) }
 
   before { user_login(user) }
 
@@ -17,12 +18,15 @@ RSpec.describe 'Task Management' do
       select '高', from: 'task_priority'
       fill_in 'task_start_time', with: '2024-06-07 10:00'
       fill_in 'task_end_time', with: '2024-06-07 12:00'
+      select tags.first.name, from: 'task_tag_ids'
+      fill_in 'task_new_tags', with: 'NewTag1, NewTag2'
       click_on I18n.t('tasks.index.confirm')
     end
 
     context 'when viewing the tasks' do
       it { expect(page).to have_content('新增成功！') }
       it { expect(page).to have_content('New Title') }
+      it { expect(page).to have_content('NewTag1') }
       it { expect(page).to have_current_path(tasks_path) }
     end
 
@@ -49,11 +53,14 @@ RSpec.describe 'Task Management' do
       select '低', from: 'task_priority'
       fill_in 'task_start_time', with: '2024-06-07 10:00'
       fill_in 'task_end_time', with: '2024-06-07 12:00'
+      select tags.second.name, from: 'task_tag_ids'
+      fill_in 'task_new_tags', with: 'UpdatedTag1, UpdatedTag2'
       click_on I18n.t('tasks.index.confirm')
     end
 
     context 'when parameters are valid' do
       it { expect(page).to have_content('更新成功！') }
+      it { expect(page).to have_content('UpdatedTag2') }
       it { expect(page).to have_content('Update Title') }
     end
 
