@@ -51,7 +51,17 @@ RSpec.describe 'Admin Management' do
     end
   end
 
-  describe 'Deleting a user' do
+  describe '.show' do
+    before do
+      visit admin_users_path(user)
+    end
+
+    context 'when show more tasks' do
+      it { expect(page).to have_content(user.tasks.count) }
+    end
+  end
+
+  describe '.delete' do
     before do
       visit admin_users_path
       form = find("form[action='/admin/users/#{user.id}'][method='post']")

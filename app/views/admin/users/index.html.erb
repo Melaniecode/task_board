@@ -25,7 +25,7 @@
             <div class="flex space-x-2 task-action-buttons" id="task-action-buttons-<%= user.id %>">
               <%= link_to t('.edit'), edit_admin_user_path(user), id: "task-edit-link-#{user.id}", class: "bg-yellow-500 text-white px-2 py-1 rounded" %>
               <%= button_to t('.delete'), admin_user_path(user), method: :delete, id: "task-delete-button-#{user.id}", class: "bg-red-500 text-white px-2 py-1 rounded" %>
-              <%= link_to t('.see_more'), tasks_admin_user_path(user), id: "task-see-more-link-#{user.id}", class: "bg-blue-500 text-white px-2 py-1 rounded" %>
+              <%= link_to t('.see_more'), admin_user_path(user), id: "task-see-more-link-#{user.id}", class: "bg-blue-500 text-white px-2 py-1 rounded" %>
             </div>
           </td>
         </tr>

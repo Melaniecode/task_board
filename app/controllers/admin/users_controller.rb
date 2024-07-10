@@ -9,6 +9,10 @@ module Admin
       @users = User.all.page(params[:page]).per(10)
     end
 
+    def show
+      @tasks = user.tasks
+    end
+
     def new
       @user = User.new
     end
@@ -38,10 +42,6 @@ module Admin
       else
         redirect_to admin_users_path, alert: t('cannot_delete_admin')
       end
-    end
-
-    def tasks
-      @tasks = user.tasks
     end
 
     private
