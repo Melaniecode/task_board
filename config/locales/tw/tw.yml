@@ -8,6 +8,7 @@ tw:
       sort_by: 依_排序
       search_status: 狀態
       search_title: 標題搜尋
+      search_tags: 標籤搜尋
       confirm: 確定
       actions: 操作
     new:
@@ -70,6 +71,9 @@ tw:
         priority: 優先權
         start_time: 開始時間
         end_time: 結束時間
+        tag_ids: 標籤選擇
+        new_tags: 新增標籤
+        tag: 標籤
       user:
         name: 姓名
         email: 信箱
