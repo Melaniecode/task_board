@@ -46,7 +46,7 @@ class TasksController < ApplicationController
   end
 
   def task
-    @task ||= Task.find_by(id: params[:id])
+    @task ||= Task.find(params[:id])
   end
 
   def sort_by
