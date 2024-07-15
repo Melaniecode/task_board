@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def require_user_logged_in!
@@ -24,14 +24,14 @@ class ApplicationController < ActionController::Base
   private
 
   def not_found
-    render 'errors/not_found'
+    render 'errors/not_found', layout: 'error'
   end
 
   def unprocessable_entity
-    render 'errors/unprocessable_entity'
+    render 'errors/unprocessable_entity', layout: 'error'
   end
 
   def server_error
-    render 'errors/server_error'
+    render 'errors/server_error', layout: 'error'
   end
 end

@@ -51,7 +51,7 @@ module Admin
     end
 
     def user
-      @user ||= User.find(params[:id])
+      @user ||= User.find_by(id: params[:id])
     end
 
     def admin_only
